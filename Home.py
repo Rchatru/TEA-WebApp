@@ -10,7 +10,9 @@ st.set_page_config(
          'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
          'About': '''# TEA WebApp.
 
-         [@Rchatru](https://github.com/Rchatru/) Roberto Chávez Trujillo.'''
+         st.markdown([@Rchatru](https://github.com/Rchatru/))
+         
+         Roberto Chávez Trujillo.'''
      }
  )
 
