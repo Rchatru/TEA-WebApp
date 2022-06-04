@@ -5,11 +5,12 @@ import numpy as np
 st.set_page_config(
      page_title="TEA WebApp",
      page_icon="👀",
-     layout="",
-     initial_sidebar_state="",
      menu_items={
-         'Get Help': 'https://www.extremelycoolapp.com/help',
-         'Report a bug': "https://www.extremelycoolapp.com/bug",
-         'About': "# This is a header. This is an *extremely* cool app!"
+         'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
+         'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
+         'About': "# TEA WebApp. Roberto Chávez Trujillo."
      }
  )
+
+st.title('TEA WebApp')
+
