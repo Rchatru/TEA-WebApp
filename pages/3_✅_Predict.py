@@ -22,6 +22,17 @@ st.markdown('''
 En esta pantalla se puede consultar la predicción para un individuo o grupos en concreto que efectúa el modelo XGBoost entrenado.
 ''')
 
+st.markdown('''
+Aunque la página se encarga de adecuar los datos a la forma requerida, se recomienda que el usuario introduzca los datos de entrada en 
+el formato CSV siguiendo el siguiente esquema de columnas:
+''')
+
+st.table(
+pd.DataFrame(10*np.random.randn(3, 5),
+columns=['A', 'B', 'C', 'D', 'E'])
+)
+
+
 
  # Upload individual's data to be tested
 with st.sidebar.header('1. Upload your data file'):
@@ -29,8 +40,13 @@ with st.sidebar.header('1. Upload your data file'):
 
 
 if input is not None:  
+
+    st.markdown('''
+    Vista previa de los datos de entrada:
+    ''')
     df = pd.read_csv(input,sep=';')
-    st.dataframe(df)
+    st.dataframe(df.head())
+
 
     # model = XGBClassifier()
     # model.load_model("XGBClassifier.json")
