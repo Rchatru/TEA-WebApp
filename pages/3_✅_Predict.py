@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from xgboost import XGBClassifier
 
 
 st.set_page_config(
@@ -27,6 +28,11 @@ if input is not None:
     
     st.dataframe(input)
 
+    model = XGBClassifier()
+    model.load_model("XGBClassifier.json")
+
+    # make predictions for test data
+    predictions = model.predict(input)
 
     out = input
     with st.sidebar.header('2. Download results file'):
