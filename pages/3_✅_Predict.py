@@ -25,7 +25,9 @@ with st.sidebar.header('1. Upload your data file'):
 
 if input is not None:
     
+    st.dataframe(input)
 
-    out =3
+
+    out = input
     with st.sidebar.header('2. Download results file'):
         st.download_button('Download file', out)
