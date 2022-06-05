@@ -8,10 +8,8 @@ st.set_page_config(
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
          'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': '''# TEA WebApp.
-
-         st.markdown([@Rchatru](https://github.com/Rchatru/))
-         
+         'About': '''TEA WebApp.
+         https://github.com/Rchatru/         
          Roberto Chávez Trujillo.'''
      }
  )
