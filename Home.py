@@ -22,6 +22,6 @@ WebApp construida con Python y Streamlit diseñada para proporcionar una interac
 La aplicación se encuentra dividida en diferentes subpáginas, cada una con un fin distinto bien diferenciado:
 
 - En primer lugar se tiene la pantalla de inicio "Home", que contiene una introducción básica y, desde la que se puede acceder al resto de ellas.
-- En segundo término se encuentra una [página](/Model) en la que se pueden aportar más datos de entrenamiento para llevar a cabo un reentrenamiento del algoritmo.
+- En segundo término se encuentra una página <a href="https://share.streamlit.io/rchatru/tea-webapp/Home.py/Model" target="_self">click</a> en la que se pueden aportar más datos de entrenamiento para llevar a cabo un reentrenamiento del algoritmo.
 - Por último, en la [tercera](/Predict) se muestran una serie de resultados, así como se tiene la posibilidad de introducir los datos de un individuo en concreto para llevar a cabo su diagnóstico por parte del modelo.
 ''')
