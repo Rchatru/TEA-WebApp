@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from xgboost import XGBClassifier
+# from xgboost import XGBClassifier
 from functions import *
 
 
@@ -22,20 +22,24 @@ st.markdown('''
 En esta pantalla se puede consultar la predicción para un individuo o grupos en concreto que efectúa el modelo XGBoost entrenado.
 ''')
 
+
  # Upload individual's data to be tested
 with st.sidebar.header('1. Upload your data file'):
     input = st.sidebar.file_uploader("Upload your input file", type=["csv"])
 
-if input is not None:
-    
-    st.dataframe(input)
 
-    model = XGBClassifier()
-    model.load_model("XGBClassifier.json")
+if input is not None:  
+    df = pd.read_csv(input,sep=';')
+    st.dataframe(df)
+
+    # model = XGBClassifier()
+    # model.load_model("XGBClassifier.json")
 
     # make predictions for test data
-    predictions = model.predict(input)
+    # predictions = model.predict(df)
 
-    out = input
-    with st.sidebar.header('2. Download results file'):
-        st.download_button('Download file', out)
+
+    csv = convert_df(df)
+    with st.sidebar:
+        st.header('2. Download results file')
+        st.download_button('Download file', csv, 'results.csv', 'text/csv',key='download-csv')
