@@ -38,7 +38,7 @@ columns=['FixationPointX_(MCSpx)', 'FixationPointY_(MCSpx)', 'Fixation', 'Saccad
 st.caption('''
 Nota: El modelo actual desarrollado sólo precisa los datos de la escena 6 y se basa únicamente en las variables 
 `['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']`.
-También se espera que el fichero de datos se encuentre normalizado.
+También se espera que el fichero de datos se encuentre normalizado y codificado mediante One-Hot Encoding.
 ''')
 
  # Upload individual's data to be tested

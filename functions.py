@@ -15,6 +15,12 @@ def df_info(df):
    s = buffer.getvalue() 
    return s
 
+def check_df(df):
+   # En primer lugar ajusta el nombre de las columnas a la forma requerida
+   df.rename(columns=lambda x: x.replace(" ", "_"), inplace=True)
+
+   return df
+
 @st.cache
 def predict(df):
    esc = 6
