@@ -18,10 +18,10 @@ def df_info(df):
 @st.cache
 def predict(df):
    esc = 6
-   BestVars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
+   vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
    X = df.loc[df['escena' + str(esc)] == 1]
-   X = X.loc[:, BestVars]
-   model = pickle.load(open('/static/XGBClassifier.sav', 'rb'))
+   X = X.loc[:, vars]
+   model = pickle.load(open('static/XGBClassifier.sav', 'rb'))
    result = model.predict(X)
    return result
 
