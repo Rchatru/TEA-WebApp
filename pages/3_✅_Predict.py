@@ -70,10 +70,7 @@ else:
         st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
         if not st.sidebar.button("Test Dataset"):
             placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
+        else:
+            df = upload_test_data()
             
             
-
-        
-# if not st.checkbox("Hide dataframe"):
-#     df = pd.DataFrame(range(0, 10))
-#     placeholder.dataframe(df)
