@@ -28,7 +28,7 @@ def predict(df):
 @st.cache
 def upload_test_data():
    # Open stored .csv file at static folder an convert to dataframe
-   df = pd.read_csv("/static/test_data.csv",sep=';') 
+   df = pd.read_csv("static/test_data.csv",sep=';') 
    return df
 
 # model = XGBClassifier()
