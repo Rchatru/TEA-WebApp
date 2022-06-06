@@ -68,9 +68,21 @@ else:
     with st.sidebar:
         placeholder = st.empty()
         st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
-        if not st.sidebar.button("Test Dataset"):
-            placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
-        else:
-            df = upload_test_data()
+    if not st.sidebar.button("Test Dataset"):
+        placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
+    else:
+        df = upload_test_data()
             
-            
+        st.subheader('''
+        Vista previa de los datos de entrada:
+        ''')
+        
+        st.dataframe(df.head())
+
+        with st.expander("See dataset debug info"):
+            st.text(df_info(df))
+        
+        csv = convert_df(df)
+        with st.sidebar:
+            st.header('2. Download results file')
+            st.download_button('Download file', csv, 'results.csv', 'text/csv',key='download-csv')
