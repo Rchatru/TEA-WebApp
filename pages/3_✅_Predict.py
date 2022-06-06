@@ -24,7 +24,11 @@ En esta pantalla se puede consultar la predicción para un individuo o grupos en
 
 st.markdown('''
 Aunque la página se encarga de adecuar los datos a la forma requerida, se recomienda que el usuario introduzca los datos de entrada en 
-el formato CSV siguiendo el siguiente esquema de columnas:
+el formato CSV siguiendo el siguiente esquema de columnas: 
+esc = 6
+BestVars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
+fichero normalizado (std)
+validacion = model.predict(X_val)
 ''')
 
 st.table(
@@ -47,12 +51,8 @@ if input is not None:
     df = pd.read_csv(input,sep=';')
     st.dataframe(df.head())
 
+    
 
-    # model = XGBClassifier()
-    # model.load_model("XGBClassifier.json")
-
-    # make predictions for test data
-    # predictions = model.predict(df)
 
 
     csv = convert_df(df)
