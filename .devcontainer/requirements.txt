@@ -1,0 +1,9 @@
+numpy
+pandas
+xgboost
+tensorflow
+scikit-learn
+matplotlib
+streamlit
+../functions.py
+
