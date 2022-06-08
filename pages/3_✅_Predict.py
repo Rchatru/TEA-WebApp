@@ -94,18 +94,20 @@ else:
         with st.expander("See dataset debug info"):
             st.text(df_info(df))
 
-        
-        if st.button('Predict !', help='Click to predict'):
-            pred = 'Hola si funciona'
-            # pred = predict(df)
-            my_bar = st.progress(0)
-            for progress in range(100):
-                time.sleep(0.01)
-                my_bar.progress(progress + 1)
-            my_bar.empty()
+        # BUG: No funciona el boton
+        # if st.button('Predict !', help='Click to predict'):
+        #     pred = 'Hola si funciona'
+        #     # pred = predict(df)
+        #     my_bar = st.progress(0)
+        #     for progress in range(100):
+        #         time.sleep(0.01)
+        #         my_bar.progress(progress + 1)
+        #     my_bar.empty()
             
-            st.write(pred)
-            st.success('Prediction done!')
+        #     st.write(pred)
+        #     st.success('Prediction done!')
+
+        st.button('Predict !', help='Click to predict', on_click=lambda: st.write(predict(df)))
 
 
         csv = convert_df(df)
