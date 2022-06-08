@@ -1,4 +1,6 @@
 import streamlit as st
+from sklearn.base import TransformerMixin
+from sklearn.base import BaseEstimator
 import pandas as pd
 import pickle
 import io
