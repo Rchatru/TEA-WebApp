@@ -73,15 +73,17 @@ def check_df(df_in):
 
 @st.cache
 def predict(df):
-   esc = 6
-   X = df.loc[df['escena' + str(esc)] == 1]
-   X = X.loc[:, vars]
-   Y = Y.loc[:,-1]
+   # La selección de escena no debe estar aqui
+   # esc = 6
+   # X = df.loc[df['escena' + str(esc)] == 1]
+   X = df.loc[:, vars]
+   Y = df.loc[:,['TEA', 'id']]
    model = pickle.load(open('static/XGBClassifier.sav', 'rb'))
    result = model.predict(X)
    return result
 
 
+# Por alguna razón da resultados extraños si se añade cache a esta función
 def upload_test_data():
    # Open stored .csv file at static folder an convert to dataframe
    # TODO: Exportar del script Principal.py el dataframe de test procesado
