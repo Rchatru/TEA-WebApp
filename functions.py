@@ -71,7 +71,7 @@ def check_df(df_in):
 
    return df
 
-@st.cache
+# @st.cache
 def predict(df):
    # La selección de escena no debe estar aqui
    # esc = 6
