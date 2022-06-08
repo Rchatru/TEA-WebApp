@@ -78,14 +78,16 @@ else:
         
         st.dataframe(df.head())
 
-        if st.button('Predict!', help='Click to predict'):
-            pred = predict(df)
-            with st.spinner('Predicting...'):
-                st.write(pred)
-
         with st.expander("See dataset debug info"):
             st.text(df_info(df))
-        
+
+        if st.button('Predict !', help='Click to predict'):
+            pred = predict(df)
+            # with st.spinner('Predicting...'):
+            st.write(pred)
+            st.success('Prediction done!')
+
+
         csv = convert_df(df)
         with st.sidebar:
             st.header('2. Download results file')
