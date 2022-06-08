@@ -81,7 +81,7 @@ def predict(df):
    result = model.predict(X)
    return result
 
-@st.cache
+
 def upload_test_data():
    # Open stored .csv file at static folder an convert to dataframe
    # TODO: Exportar del script Principal.py el dataframe de test procesado
