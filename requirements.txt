@@ -1,6 +1,6 @@
 numpy
 pandas
-xgboost
+xgboost==0.90
 tensorflow
 scikit-learn
 matplotlib
