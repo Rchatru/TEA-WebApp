@@ -60,8 +60,8 @@ if input is not None:
         st.text(df_info(df))
 
     if st.button('Predict !', help='Click to predict'):
-        pred = 'Hola si funciona'
-        # pred = predict(df)
+        # pred = 'Hola si funciona'
+        pred = predict(df)
 
         my_bar = st.progress(0)
         for progress in range(100):
