@@ -5,6 +5,7 @@ import io
 import pickle
 # from xgboost import XGBClassifier
 from functions import *
+import time
 
 
 st.set_page_config(
@@ -61,8 +62,12 @@ if input is not None:
     if st.button('Predict !', help='Click to predict'):
         pred = 'Hola si funciona'
         # pred = predict(df)
-        with st.spinner('Predicting...'):
-            st.write(pred)
+        my_bar = st.progress(0)
+
+        for percent_complete in range(100):
+            time.sleep(0.1)
+            my_bar.progress(percent_complete + 1)
+        st.write(pred)
         st.success('Prediction done!')
     
     csv = convert_df(df)
