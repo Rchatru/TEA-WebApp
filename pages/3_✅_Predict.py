@@ -82,7 +82,8 @@ else:
             st.text(df_info(df))
 
         if st.button('Predict !', help='Click to predict'):
-            pred = predict(df)
+            pred = 'Hola si funciona'
+            # pred = predict(df)
             # with st.spinner('Predicting...'):
             st.write(pred)
             st.success('Prediction done!')
