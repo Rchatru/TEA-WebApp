@@ -64,9 +64,9 @@ if input is not None:
         # pred = predict(df)
 
         my_bar = st.progress(0)
-        for percent_complete in range(100):
+        for progress in range(100):
             time.sleep(0.01)
-            my_bar.progress(percent_complete + 1)
+            my_bar.progress(progress + 1)
         my_bar.empty()
         st.write(pred)
         st.success('Prediction done!')
@@ -94,10 +94,16 @@ else:
         with st.expander("See dataset debug info"):
             st.text(df_info(df))
 
+        
         if st.button('Predict !', help='Click to predict'):
             pred = 'Hola si funciona'
             # pred = predict(df)
-            # with st.spinner('Predicting...'):
+            my_bar = st.progress(0)
+            for progress in range(100):
+                time.sleep(0.01)
+                my_bar.progress(progress + 1)
+            my_bar.empty()
+            
             st.write(pred)
             st.success('Prediction done!')
 
