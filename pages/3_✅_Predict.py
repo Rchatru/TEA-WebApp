@@ -57,6 +57,13 @@ if input is not None:
 
     with st.expander("See dataset debug info"):
         st.text(df_info(df))
+
+    if st.button('Predict !', help='Click to predict'):
+        pred = 'Hola si funciona'
+        # pred = predict(df)
+        # with st.spinner('Predicting...'):
+        st.write(pred)
+        st.success('Prediction done!')
     
     csv = convert_df(df)
     with st.sidebar:
