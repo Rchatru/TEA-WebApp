@@ -110,9 +110,9 @@ else:
 
         # Predicción
         if st.button('Predict !', help='Click to predict'):
-            
+            print('dentro del if')
             pred = predict(df)
-
+            print('prediccion hecha')
             my_bar = st.progress(0)
             for progress in range(100):
                 time.sleep(0.01)
