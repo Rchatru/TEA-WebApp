@@ -109,17 +109,17 @@ else:
         #     st.success('Prediction done!')
 
         # Predicción
-    if st.button('Predict !', help='Click to predict'):
-        
-        pred = predict(df)
+        if st.button('Predict !', help='Click to predict'):
+            
+            pred = predict(df)
 
-        my_bar = st.progress(0)
-        for progress in range(100):
-            time.sleep(0.01)
-            my_bar.progress(progress + 1)
-        my_bar.empty()
-        st.write(pred)
-        st.success('Prediction done!')
+            my_bar = st.progress(0)
+            for progress in range(100):
+                time.sleep(0.01)
+                my_bar.progress(progress + 1)
+            my_bar.empty()
+            st.write(pred)
+            st.success('Prediction done!')
 
         # st.button('Predict !', help='Click to predict', on_click=lambda: st.write(predict(df)))
 
