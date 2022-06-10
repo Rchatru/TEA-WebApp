@@ -6,6 +6,8 @@ import pickle
 import io
 import sys
 
+import xgboost
+
 # @st.cache
 def convert_df(df):
    return df.to_csv().encode('utf-8')
@@ -79,7 +81,10 @@ def predict(df):
    
    X = df.loc[:, vars]
    Y = df.loc[:,['TEA', 'id']]
-   model = pickle.load(open('static/XGBClassifier.model', 'rb'))
+
+   model = xgboost.XGBClassifier()
+   model.load_model('static/XGBClassifier.bin')
+
    result = model.predict(X)
    return result
 
@@ -92,11 +97,3 @@ def upload_test_data():
    df['id'] = pd.get_dummies(df[['07p', '08p', '05c', '09c']]).idxmax(1)
    df = df.drop(columns=set(cols) - set(vars+['id','TEA']))
    return df
-
-# model = XGBClassifier()
-# model.load_model("XGBClassifier.json")
-
-# esc = 6
-# BestVars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
-# fichero normalizado (std)
-# validacion = model.predict(X_val)
