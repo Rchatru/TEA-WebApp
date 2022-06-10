@@ -76,11 +76,10 @@ def predict(df):
    # La selección de escena no debe estar aqui
    # esc = 6
    # X = df.loc[df['escena' + str(esc)] == 1]
-   # Solo para prueba, borrar una vez terminado
-   df['id'] = pd.get_dummies(df[['07p', '08p', '05c', '09c']]).idxmax(1)
+   
    X = df.loc[:, vars]
    Y = df.loc[:,['TEA', 'id']]
-   model = pickle.load(open('static/XGBClassifier.sav', 'rb'))
+   model = pickle.load(open('static/XGBClassifier.model', 'rb'))
    result = model.predict(X)
    return result
 
@@ -88,9 +87,10 @@ def predict(df):
 # Por alguna razón da resultados extraños si se añade cache a esta función
 def upload_test_data():
    # Open stored .csv file at static folder an convert to dataframe
-   # TODO: Exportar del script Principal.py el dataframe de test procesado
    df = pd.read_csv("static/test_data.csv",sep=';') 
+   cols = df.columns.to_list()
    df['id'] = pd.get_dummies(df[['07p', '08p', '05c', '09c']]).idxmax(1)
+   df = df.drop(columns=set(cols) - set(vars))
    return df
 
 # model = XGBClassifier()
