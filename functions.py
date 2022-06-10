@@ -90,7 +90,7 @@ def upload_test_data():
    df = pd.read_csv("static/test_data.csv",sep=';') 
    cols = df.columns.to_list()
    df['id'] = pd.get_dummies(df[['07p', '08p', '05c', '09c']]).idxmax(1)
-   df = df.drop(columns=set(cols) - set(vars))
+   df = df.drop(columns=set(cols) - set(vars+['id','TEA']))
    return df
 
 # model = XGBClassifier()
