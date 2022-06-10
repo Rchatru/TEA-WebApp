@@ -59,9 +59,10 @@ if input is not None:
     with st.expander("See dataset debug info"):
         st.text(df_info(df))
 
+    print('antes boton')
     # Predicción
     if st.button('Predict !', help='Click to predict'):
-        
+        print('boton pulsado')
         pred = predict(df)
 
         my_bar = st.progress(0)
@@ -107,9 +108,11 @@ else:
             
         #     st.write(pred)
         #     st.success('Prediction done!')
-
+        print('antes del if')
         # Predicción
-        if st.button('Predict !', help='Click to predict'):
+        pressed = st.button('Predict !')
+        print(pressed)
+        if pressed:
             print('dentro del if')
             pred = predict(df)
             print('prediccion hecha')
