@@ -47,7 +47,6 @@ with st.sidebar.header('1. Upload your data file'):
     input = st.sidebar.file_uploader("Upload your input file", type=["csv"])
     
 
-
 if input is not None:  
 
     st.subheader('''
@@ -82,9 +81,12 @@ else:
     with st.sidebar:
         placeholder = st.empty()
         st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
-    if not st.sidebar.button("Test Dataset"):
+
+    # NOTE: No funciona el boton
+    if not st.sidebar.checkbox("Test Dataset"):
         placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
     else:
+        st.session_state.man_test = 1
         df = upload_test_data()
             
         st.subheader('''
@@ -96,26 +98,11 @@ else:
         with st.expander("See dataset debug info"):
             st.text(df_info(df))
 
-        # BUG: No funciona el boton
-        # if st.button('Predict !', help='Click to predict'):
-        #     pred = 'Hola si funciona'
-        #     # pred = predict(df)
-        #     my_bar = st.progress(0)
-        #     for progress in range(100):
-        #         time.sleep(0.01)
-        #         my_bar.progress(progress + 1)
-        #     my_bar.empty()
-            
-        #     st.write(pred)
-        #     st.success('Prediction done!')
-        print('antes del if')
+        
         # Predicción
-        pressed = st.button('Predict !')
-        print(pressed)
+        pressed = st.button('Predict !',key='button_test')
         if pressed:
-            print('dentro del if')
             pred = predict(df)
-            print('prediccion hecha')
             my_bar = st.progress(0)
             for progress in range(100):
                 time.sleep(0.01)
@@ -124,7 +111,7 @@ else:
             st.write(pred)
             st.success('Prediction done!')
 
-        # st.button('Predict !', help='Click to predict', on_click=lambda: st.write(predict(df)))
+    
 
 
         csv = convert_df(df)
