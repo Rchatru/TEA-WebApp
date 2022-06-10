@@ -48,5 +48,5 @@ with st.sidebar.header('2. Upload a new model file'):
     input = st.sidebar.file_uploader("Upload your file", type=[".json", ".bin", ".model"])
 
 
-st.image('static/images/resultados.png',caption='Gráficas de entrenamiento', use_column_width=True)
-st.image('static/images/confusion_func.png',caption='Matriz de confusión normalizada', use_column_width=True)
+st.image('static/Images/resultados.png',caption='Gráficas de entrenamiento', use_column_width=True)
+st.image('static/Images/confusion_func.png',caption='Matriz de confusión normalizada', use_column_width=True)
