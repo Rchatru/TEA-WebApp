@@ -1,6 +1,7 @@
 import streamlit as st
 from sklearn.base import TransformerMixin
 from sklearn.base import BaseEstimator
+from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import pickle
 import io
@@ -84,6 +85,9 @@ def predict(df):
 
    model = xgboost.XGBClassifier()
    model.load_model('static/XGBClassifier.bin')
+   # Importante para evitar bug de XGBoost https://github.com/dmlc/xgboost/issues/2073
+   # FIXME: Investigar cual es el valor correcto 0 o 1
+   model._le = LabelEncoder().fit([0,1])
 
    result = model.predict(X)
    return result
