@@ -61,20 +61,58 @@ if input is not None:
     with st.expander("See dataset debug info"):
         st.text(df_info(df))
 
-    print('antes boton')
-    # Predicción
-    if st.button('Predict !', help='Click to predict'):
-        print('boton pulsado')
-        pred = predict(df)
-
-        my_bar = st.progress(0)
-        for progress in range(100):
-            time.sleep(0.01)
-            my_bar.progress(progress + 1)
-        my_bar.empty()
-        st.write(pred)
-        st.success('Prediction done!')
     
+    # Predicción
+    if st.button('Predict !',key='button_test') or st.session_state.predict_button:
+        st.session_state.predict_button = True
+
+        st.markdown('''
+        ## ✅ Resultados 
+        
+        A continuación, se muestra el dataset original junto a una nueva columna `Pred` que contiene la 
+        predicción del modelo para cada una de las muestras individuales (filas).
+        ''')
+        pred = predict(df)
+                    
+        st.dataframe(pred)
+        st.success('Prediction done!')
+
+        st.markdown('''
+        ### 📊 Predicciones Individuales 
+        
+        Finalmente, se detalla la clasificación a nivel de individuo. Por un lado, se indica el número de muestras disponibles por cada individuo, así 
+        como la cantidad de ellas que han sido clasificadas como TEA y Control. Por otro lado, se tiene un deslizador que permite variar el umbral empleado 
+        para determinar la clasificación de cada individuo. 
+        ''')
+        # Ahora se muestran los resultados
+
+        col1,col2 = st.columns(2)
+        col1.subheader('Predicciones individuales')
+        col2.subheader('Umbral de clasificación')
+    
+        umbral = col2.slider('Ajuste el umbral de decisión', min_value=50, max_value=100, step=1)           
+        
+
+        cross_tab = crosstab(pred)
+        
+        col1.dataframe(cross_tab)
+
+
+        unique_id = df.id.unique()
+        col = st.columns(len(unique_id))
+        for col,ind in zip(col,unique_id):
+            percent,tipo,color = metrics(pred,ind,umbral)
+            col.metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+
+        
+
+        
+        if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
+            st.session_state.predict_button = False
+            st.experimental_memo.clear()
+    
+
+
     csv = convert_df(df)
     with st.sidebar:
         st.header('2. Download results file')
@@ -113,12 +151,7 @@ else:
             predicción del modelo para cada una de las muestras individuales (filas).
             ''')
             pred = predict(df)
-            # my_bar = st.progress(0)
-            # for progress in range(100):
-            #     time.sleep(0.01)
-            #     my_bar.progress(progress + 1)
-            # my_bar.empty()
-            
+                        
             st.dataframe(pred)
             st.success('Prediction done!')
 
