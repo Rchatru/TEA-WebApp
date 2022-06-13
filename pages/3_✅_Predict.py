@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import io
-import pickle
+# import numpy as np
+# import io
+# import pickle
 # from xgboost import XGBClassifier
 from functions import *
-import time
+# import time
 
 
 st.set_page_config(
@@ -18,8 +18,10 @@ st.set_page_config(
      }
  )
 
-if "predict_button" not in st.session_state:
-    st.session_state.predict_button = False
+if "predict_button1" not in st.session_state:
+    st.session_state.predict_button1 = False
+if "predict_button2" not in st.session_state:
+    st.session_state.predict_button2 = False
 
 st.markdown('''
 # ✅ Results & Predictions 
@@ -61,10 +63,18 @@ if input is not None:
     with st.expander("See dataset debug info"):
         st.text(df_info(df))
 
-    
+    st.subheader('''
+    Vista previa de los datos procesados:
+    ''')
+    new_df = check_df(df)
+    st.dataframe(new_df.head())
+
+    with st.expander("See dataset debug info"):
+        st.text(df_info(new_df))
+
     # Predicción
-    if st.button('Predict !',key='button_test') or st.session_state.predict_button:
-        st.session_state.predict_button = True
+    if st.button('Predict !',key='button_test1') or st.session_state.predict_button1:
+        st.session_state.predict_button1 = True
 
         st.markdown('''
         ## ✅ Resultados 
@@ -72,9 +82,14 @@ if input is not None:
         A continuación, se muestra el dataset original junto a una nueva columna `Pred` que contiene la 
         predicción del modelo para cada una de las muestras individuales (filas).
         ''')
-        pred = predict(df)
+        pred = predict(new_df)
                     
         st.dataframe(pred)
+
+        # DEBUG: eliminar al terminar
+        # with st.expander("See dataset debug info"):
+        #     st.text(df_info(pred))
+
         st.success('Prediction done!')
 
         st.markdown('''
@@ -98,7 +113,7 @@ if input is not None:
         col1.dataframe(cross_tab)
 
 
-        unique_id = df.id.unique()
+        unique_id = pred.id.unique()
         col = st.columns(len(unique_id))
         for col,ind in zip(col,unique_id):
             percent,tipo,color = metrics(pred,ind,umbral)
@@ -108,22 +123,22 @@ if input is not None:
 
         
         if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
-            st.session_state.predict_button = False
+            st.session_state.predict_button1 = False
             st.experimental_memo.clear()
     
 
 
-    csv = convert_df(df)
-    with st.sidebar:
-        st.header('2. Download results file')
-        st.download_button('Download file', csv, 'results.csv', 'text/csv',key='download-csv')
+        csv = convert_df(pred)
+        with st.sidebar:
+            st.header('2. Download results file')
+            st.download_button('Download file', csv, 'results.csv', 'text/csv',key='download-csv')
 
 else:
     with st.sidebar:
         placeholder = st.empty()
         st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
 
-    # NOTE: No funciona el boton
+    # NOTE: Se puede sustituir por un botón utilizando session_state
     if not st.sidebar.checkbox("Test Dataset"):
         placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
     else:
@@ -141,8 +156,8 @@ else:
 
         
         # Predicción
-        if st.button('Predict !',key='button_test') or st.session_state.predict_button:
-            st.session_state.predict_button = True
+        if st.button('Predict !',key='button_test2') or st.session_state.predict_button2:
+            st.session_state.predict_button2 = True
 
             st.markdown('''
             ## ✅ Resultados 
@@ -186,7 +201,7 @@ else:
 
             
             if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
-                st.session_state.predict_button = False
+                st.session_state.predict_button2 = False
                 st.experimental_memo.clear()
                 
 

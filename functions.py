@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 # import pickle
 import io
-import sys
+# import sys
 import time
 
 import xgboost
@@ -65,9 +65,10 @@ def check_df(df_in):
    cols = df_in.columns.tolist()
 
    # Eliminar las finas en las que no existan datos para las variables indicadas
-   # El resto de NaN se rellenará con 0
-   df = df_in.dropna(subset=['GazePointIndex', 'StrictAverageGazePointX_(ADCSmm)', 'StrictAverageGazePointY_(ADCSmm)'])
-   df = df.fillna(0)
+   # El resto de NaN se rellenará con 0. Reset index importante cuando se eliminan datos o se selecciona un subset del df.
+   # Si los índices no coinciden da fallo en la concatenación de los df.
+   df_in.dropna(subset=['GazePointIndex', 'StrictAverageGazePointX_(ADCSmm)', 'StrictAverageGazePointY_(ADCSmm)'], inplace=True)
+   df = df_in.fillna(0).reset_index(drop=True)
 
    # Como necesidad para operaciones posteriores, se sustituyen las ',' por '.' y se convierte a tipo numérico
    for var in ['StrictAverageGazePointX_(ADCSmm)', 'StrictAverageGazePointY_(ADCSmm)']:
@@ -77,52 +78,54 @@ def check_df(df_in):
    # df = OneHotEncode(df, 'SceneName')
    df = OneHotEncode(df, 'GazeEventType')
    
-   # Cálculo de los cuartiles y rango IQR
-   Q1 = df[vars].quantile(0.25)
-   Q3 = df[vars].quantile(0.75)
-   IQR = Q3 - Q1
+   # FIXME: #4 Se eliminan demasiados outliers, revisar función
+   # # Cálculo de los cuartiles y rango IQR
+   # Q1 = df[vars].quantile(0.25)
+   # Q3 = df[vars].quantile(0.75)
+   # IQR = Q3 - Q1
 
-   # Límites superior e inferior para el cálculo de los outliers
-   k = 3
-   l_sup = Q3 + k*IQR
-   l_inf = Q1 - k*IQR
+   # # Límites superior e inferior para el cálculo de los outliers
+   # k = 3
+   # l_sup = Q3 + k*IQR
+   # l_inf = Q1 - k*IQR
 
-   # Se eliminan los outliers que se encuentren por encima del límite superior o por debajo del límite inferior
-   df = df[~((df < l_inf) | (df > l_sup)).any(axis=1)]
+   # # Se eliminan los outliers que se encuentren por encima del límite superior o por debajo del límite inferior
+   # df = df[~((df < l_inf) | (df > l_sup)).any(axis=1)].reset_index(drop=True)
 
    # Escalado de las variables (estandarizado)
    stdscaler = stdScaler()
    df[['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)']] = stdscaler.fit_transform(df[['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)']])
 
    # Sólo nos interesa la escena 6
-   df = df.loc[df['SceneName']=='escena6']
+   df = df.loc[df['SceneName']=='escena6'].reset_index(drop=True)
 
    # Separar X e Y, y eliminar columnas que no se necesitan
+   df_cols=df.columns.tolist()
+  
+   df = df.drop(columns=set(df_cols) - set(vars+['id','TEA']))
 
-
-   # Compara los elementos de la lista de variables necesarias (vars) con las del archivo introducido (cols).
-   if set(vars).issubset(set(cols)):
-      if len(vars) == len(cols):
-         df = df_in
-      else:
-         message = 'Las variables del archivo de entrada no coinciden con las esperadas. Se eliminarán las no necesarias.'
-         st.info(message)
-         df = df_in.drop(columns=set(cols) - set(vars))
-   else:
-      st.error("El archivo introducido no tiene todas las variables necesarias.")
-      return False
-      #sys.exit()
+   # No necesario
+   # # Compara los elementos de la lista de variables necesarias (vars) con las del archivo introducido (cols).
+   # if set(vars).issubset(set(cols)):
+   #    if len(vars) == len(cols):
+   #       df = df_in
+   #    else:
+   #       message = 'Las variables del archivo de entrada no coinciden con las esperadas. Se eliminarán las no necesarias.'
+   #       st.info(message)
+   #       df = df_in.drop(columns=set(cols) - set(vars))
+   # else:
+   #    st.error("El archivo introducido no tiene todas las variables necesarias.")
+   #    return False
+   #    #sys.exit()
       
   
-
-   
-
    return df
 
 
 # Es necesario añadir esta función al cache para que no se ejecute la predicción cada vez que se actualiza la página.
 @st.experimental_memo(suppress_st_warning=True)
 def predict(df):
+   # FIXME: #5 Se obtienen diferentes resultados de clasificación subiendo archivo de datos vs test dataset.
    """
    Esta función permite realizar la clasificación de los datos en base al modelo XGBoost importado.
    input:
@@ -134,6 +137,11 @@ def predict(df):
    
    X = df.loc[:, vars]
    Y = df.loc[:,['TEA', 'id']]
+   # DEBUG
+   # st.text('X')
+   # st.text(df_info(X))
+   # st.text('Y')
+   # st.text(df_info(Y))
 
    model = xgboost.XGBClassifier()
    model.load_model('static/XGBClassifier.bin')
@@ -142,9 +150,16 @@ def predict(df):
 
    result = model.predict(X)
    result = pd.DataFrame(result, columns=['Pred'])
+   # DEBUG
+   # st.text('result')
+   # st.text(df_info(result))
+
    # Unir de nuevo los dataframes X, Y y result en uno solo
    df_result = pd.concat([X, Y, result], axis=1)
-   
+   # DEBUG
+   # st.text('df_result')
+   # st.text(df_info(df_result))
+
    # Se añade la barra de progreso en la función para evitar que se muestre cada vez que se actualiza la página.
    my_bar = st.progress(0)
    for progress in range(100):
