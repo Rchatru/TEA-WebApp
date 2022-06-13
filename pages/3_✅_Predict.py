@@ -152,6 +152,10 @@ else:
             
 
             
+            if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
+                st.session_state.predict_button = False
+                st.experimental_memo.clear()
+                
 
 
 
