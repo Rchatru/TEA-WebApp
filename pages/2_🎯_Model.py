@@ -51,5 +51,5 @@ with st.sidebar.header('2. Upload a new model file'):
 st.image('static/Images/resultados.png',caption='Gráficas de entrenamiento', use_column_width=True)
 
 col_1,col_2 = st.columns(2)
-col_1.image('static/Images/resultados_txt.png',caption='Métricas de entrenamiento, test y validación', use_column_width=True)
-col_2.image('static/Images/confusion_func.png',caption='Matriz de confusión normalizada', use_column_width=True)
+col_1.image('static/Images/resultados_txt.png',caption='Métricas de entrenamiento, test y validación', use_column_width=True,width=500)
+col_2.image('static/Images/confusion_func.png',caption='Matriz de confusión normalizada', use_column_width=True,width=500)
