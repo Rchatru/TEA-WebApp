@@ -99,10 +99,13 @@ def check_df(df_in):
    # Sólo nos interesa la escena 6
    df = df.loc[df['SceneName']=='escena6'].reset_index(drop=True)
 
-   # Separar X e Y, y eliminar columnas que no se necesitan
+   # Eliminar columnas que no se necesitan
    df_cols=df.columns.tolist()
   
-   df = df.drop(columns=set(df_cols) - set(vars+['id','TEA']))
+   if 'TEA' not in df_cols:
+      df = df.drop(columns=set(df_cols) - set(vars+['id']))
+   else:
+      df = df.drop(columns=set(df_cols) - set(vars+['id','TEA']))
 
    # No necesario
    # # Compara los elementos de la lista de variables necesarias (vars) con las del archivo introducido (cols).
@@ -135,8 +138,14 @@ def predict(df):
       df_result: dataframe original con una nueva columna con la clase predicha, 'Pred'.
    """   
    
+   columns_in = df.columns.tolist()
+   
    X = df.loc[:, vars]
-   Y = df.loc[:,['TEA', 'id']]
+   
+   if 'TEA' not in columns_in:
+      Y = df.loc[:,['id']]
+   else:
+      Y = df.loc[:,['TEA', 'id']]
    # DEBUG
    # st.text('X')
    # st.text(df_info(X))
