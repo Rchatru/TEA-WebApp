@@ -133,7 +133,7 @@ def predict(df):
    Esta función permite realizar la clasificación de los datos en base al modelo XGBoost importado.
    input:
       df: dataframe con los datos a predecir. Se espera que el dataset esté previamente procesado con la función check_df() o
-      importado con upload_test_data(). Debe contener las variables TEA e id. #TODO: #3 Hay que tener en cuenta que no siempre se podrá disponer de la variable objetivo, TEA.
+      importado con upload_test_data(). Debe contener las variables TEA e id. 
    output:
       df_result: dataframe original con una nueva columna con la clase predicha, 'Pred'.
    """   
