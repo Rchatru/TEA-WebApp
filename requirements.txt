@@ -4,4 +4,4 @@ xgboost==0.90
 tensorflow
 scikit-learn==0.23.2
 matplotlib
-protobuf==3.19.0
+protobuf==3.19.5
