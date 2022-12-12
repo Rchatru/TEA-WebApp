@@ -57,8 +57,7 @@ def OneHotEncode(original_df, feature_to_encode):
     res = res.drop([feature_to_encode], axis=1)
     return(res)
 
-#vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
-vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Unclassified']
+vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
 
 def check_df(df_in):
    # En primer lugar ajusta el nombre de las columnas a la forma requerida
