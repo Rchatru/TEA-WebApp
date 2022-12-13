@@ -112,12 +112,29 @@ if input is not None:
         
         col1.dataframe(cross_tab)
 
-
+        # Rejilla para la visualización de las métricas individuales
         unique_id = pred.id.unique()
-        col = st.columns(len(unique_id))
-        for col,ind in zip(col,unique_id):
-            percent,tipo,color = metrics(pred,ind,umbral)
-            col.metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+
+        grid, row_num, col_num, max_col = make_grid(unique_id)
+
+        for row in range (row_num):
+            if row == row_num-1 and len(unique_id) % max_col != 0:
+                col_num = len(unique_id) % max_col
+                for col in range(col_num):
+                    ind = unique_id[row*col_num+col]
+                    percent,tipo,color = metrics(pred,ind,umbral)
+                    grid[row][col].metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+        else:
+            for col in range(col_num):
+                ind = unique_id[row*col_num+col]
+                percent,tipo,color = metrics(pred,ind,umbral)
+                grid[row][col].metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+
+
+        # col = st.columns(len(unique_id))
+        # for col,ind in zip(col,unique_id):
+        #     percent,tipo,color = metrics(pred,ind,umbral)
+        #     col.metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
 
         
 

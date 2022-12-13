@@ -194,7 +194,50 @@ def crosstab(df):
    
    return crosstab
 
+def make_grid(ids,max_col=5):
+   """
+   Esta función permite crear un grid de filas y columnas para mostrar los resultados de la clasificación
+   mediante st.metric. Por defecto se mostrarán 5 columnas por fila.
 
+   Parameters
+   ----------
+   ids : list
+      Lista con los ids de los individuos a mostrar.
+   max_col : int, (optional)
+      Número máximo de columnas que se mostrarán en la página. Por defecto es 5.
+
+   Returns
+   -------
+   grid : list
+      Lista con los elementos de la rejilla.
+   row_num : int
+      Número de filas del grid.
+   col_num : int
+      Número de columnas del grid.
+   max_col : int
+      Número máximo de columnas que se mostrarán en la página.
+
+   """
+
+   min_col = min(4,len(ids))
+
+   if len(ids) < 5:
+      col_num = min_col
+      row_num = 1
+   elif len(ids) > 5:
+      col_num = max_col
+      # floor division 9//5 = 1
+      row_num = len(ids) // max_col
+      # se añade una fila más si es necesario
+      if len(ids) % max_col != 0:
+         row_num += 1
+
+
+   grid = [0]*row_num
+   for i in range(row_num):
+      with st.container():
+         grid[i] = st.columns(col_num)
+   return grid, row_num, col_num, max_col
 
 def metrics(df,ind,umbral):
    """
