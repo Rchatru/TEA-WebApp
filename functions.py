@@ -237,6 +237,7 @@ def make_grid(ids,max_col=5):
    for i in range(row_num):
       with st.container():
          grid[i] = st.columns(col_num)
+         
    return grid, row_num, col_num, max_col
 
 def metrics(df,ind,umbral):
