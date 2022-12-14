@@ -115,7 +115,7 @@ if input is not None:
         # Rejilla para la visualización de las métricas individuales
         unique_id = pred.id.unique()
 
-        grid, row_num, col_num, max_col = make_grid(unique_id)
+        grid, row_num, col_num, max_col = functions.make_grid(unique_id)
 
         for row in range (row_num):
             if row == row_num-1 and len(unique_id) % max_col != 0:
