@@ -5,7 +5,7 @@ import numpy as np
 
 st.set_page_config(
     page_title="ASD Check - Home",
-    page_icon="👀",
+    page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png",
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
