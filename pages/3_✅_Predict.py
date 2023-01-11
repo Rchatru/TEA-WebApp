@@ -9,7 +9,7 @@ from functions import *
 
 
 st.set_page_config(
-     page_title="ASD WebApp",
+     page_title="ASD Check - Predict",
      page_icon="👀",
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
