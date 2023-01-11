@@ -9,14 +9,16 @@ from functions import *
 
 
 st.set_page_config(
-     page_title="ASD Check - Predict",
-     page_icon="👀",
-     menu_items={
-         'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
-         'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': "# ASD WebApp. Roberto Chávez Trujillo."
-     }
- )
+    page_title="ASD Check - Predict",
+    page_icon="👀",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
+        'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
+        'About': "# ASD WebApp. Roberto Chávez Trujillo."
+    }
+)
 
 if "predict_button1" not in st.session_state:
     st.session_state.predict_button1 = False
