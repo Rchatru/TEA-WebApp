@@ -154,8 +154,8 @@ else:
     with st.sidebar:
         placeholder = st.empty()
         # st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
-        # st.sidebar.caption('Cargar fichero con los individuos de test', unsafe_allow_html=False)
-        st.sidebar.markdown('Cargar fichero con los individuos de test')
+        st.sidebar.caption('Cargar fichero con los individuos de test', unsafe_allow_html=False)
+        # st.sidebar.markdown('Cargar fichero con los individuos de test')
 
     # NOTE: Se puede sustituir por un botón utilizando session_state
     if not st.sidebar.checkbox("Test Dataset"):
