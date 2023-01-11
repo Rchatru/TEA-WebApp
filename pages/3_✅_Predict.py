@@ -9,12 +9,12 @@ from functions import *
 
 
 st.set_page_config(
-     page_title="TEA WebApp",
+     page_title="ASD WebApp",
      page_icon="👀",
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
          'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': "# TEA WebApp. Roberto Chávez Trujillo."
+         'About': "# ASD WebApp. Roberto Chávez Trujillo."
      }
  )
 
@@ -26,12 +26,12 @@ if "predict_button2" not in st.session_state:
 st.markdown('''
 # ✅ Results & Predictions 
  
-En esta pantalla se puede consultar la predicción para un individuo o grupos en concreto que efectúa el modelo XGBoost entrenado.
+In this screen it is possible to consult the prediction for a specific individual or for groups made by the trained XGBoost model.
 ''')
 
 st.markdown('''
-Aunque la página se encarga de adecuar los datos a la forma requerida, se recomienda que el usuario introduzca los datos de entrada en 
-el formato CSV siguiendo el siguiente esquema de columnas: 
+Although the system takes care of the data matching to the required form, it is recommended that the user
+enters the input data in CSV format according to the following column layout: 
 ''')
 
 
@@ -155,7 +155,7 @@ else:
         placeholder = st.empty()
         # st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
         # st.sidebar.caption('Cargar fichero con los individuos de test', unsafe_allow_html=False)
-        st.sidebar.text('Cargar fichero con los individuos de test')
+        st.sidebar.markdown('Cargar fichero con los individuos de test')
 
     # NOTE: Se puede sustituir por un botón utilizando session_state
     if not st.sidebar.checkbox("Test Dataset"):
