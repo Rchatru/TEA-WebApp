@@ -260,7 +260,7 @@ def metrics(df,ind,umbral):
    sum0 = df.loc[df['id'] == ind]['Pred'].eq(0).sum()
    if sum1 >= total*umbral:
       percent = '{:.2f}'.format(sum1/total*100) + '%'
-      tipo = 'TEA'
+      tipo = 'ASD'
       color = 'inverse'
    elif sum0 >= total*umbral:
       percent = '{:.2f}'.format(sum0/total*100) + '%'
@@ -268,15 +268,15 @@ def metrics(df,ind,umbral):
       color = 'normal'
    elif sum1 < total*umbral and sum0 < total*umbral and sum1 > sum0:
       percent = '{:.2f}'.format(sum1/total*100) + '%'
-      tipo = 'Posible TEA'
+      tipo = 'Possible ASD'
       color = 'off'
    elif sum1 < total*umbral and sum0 < total*umbral and sum0 > sum1:
       percent = '{:.2f}'.format(sum0/total*100) + '%'
-      tipo = 'Posible Control'
+      tipo = 'Possible Control'
       color = 'off'
    else:
       percent = 0
-      tipo = 'No definido'
+      tipo = 'Not defined'
       color = 'off'
 
    return percent,tipo,color
