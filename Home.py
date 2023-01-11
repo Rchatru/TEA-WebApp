@@ -4,25 +4,26 @@ import numpy as np
 
 
 st.set_page_config(
-     page_title="TEA WebApp",
+     page_title="ASD WebApp",
      page_icon="👀",
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
          'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': '''TEA WebApp.
+         'About': '''ASD WebApp.
          https://github.com/Rchatru/         
          Roberto Chávez Trujillo.'''
      }
  )
 
-st.title('TEA WebApp')
+st.title('ASD WebApp')
 
 st.markdown('''
-WebApp construida con Python y Streamlit diseñada para proporcionar una interacción más amigable con los resultados de la investigación del presente doctorado orientado al diagnóstico del Trastorno del Espectro Autista a partir de datos de la dinámica ocular de los participantes obtenida mediante eye-tracker.
+WebApp built with Python and Streamlit designed to provide a more user-friendly interaction with the results of the PhD research
+aimed at the diagnosis of Autism Spectrum Disorder using eye-tracker eye dynamics data of the participants.
 
-La aplicación se encuentra dividida en diferentes subpáginas, cada una con un fin distinto bien diferenciado:
+The application is divided into different sub-pages, each with a distinct purpose:
 
-- En primer lugar se tiene la pantalla de inicio "Home", que contiene una introducción básica y, desde la que se puede acceder al resto de ellas.
-- En segundo término se encuentra una [página](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Model) en la que se pueden aportar más datos de entrenamiento para llevar a cabo un reentrenamiento del algoritmo (en construcción).
-- Por último, en la [tercera](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) se muestran una serie de resultados, así como se tiene la posibilidad de introducir los datos de un individuo en concreto para llevar a cabo su diagnóstico por parte del modelo.
+- First of all, there is the "Home" screen, which contains a basic introduction and from which the rest of the screens can be accessed.
+- Secondly, there is a [page](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Model) where it is possible to provide further training data to carry out a re-training of the algorithm (under construction).
+- Finally, in the [third](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
