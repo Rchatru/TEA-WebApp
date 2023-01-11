@@ -11,8 +11,8 @@ from functions import *
 st.set_page_config(
     page_title="ASD Check - Predict",
     page_icon="👀",
-    layout="wide",
-    initial_sidebar_state="expanded",
+    layout="centered",
+    initial_sidebar_state="auto",
     menu_items={
         'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
         'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",

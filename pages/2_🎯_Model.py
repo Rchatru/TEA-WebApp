@@ -2,15 +2,18 @@ import streamlit as st
 # import pandas as pd
 # import numpy as np
 
+
 st.set_page_config(
-     page_title="ASD Check - Model",
-     page_icon="👀",
-     menu_items={
-         'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
-         'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': "# ASD WebApp. Roberto Chávez Trujillo."
-     }
- )
+    page_title="ASD Check - Model",
+    page_icon="👀",
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items={
+        'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
+        'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
+        'About': "# ASD WebApp. Roberto Chávez Trujillo."
+    }
+)
 
 st.markdown('''
 # 🎯 Models & Training

@@ -4,16 +4,16 @@ import numpy as np
 
 
 st.set_page_config(
-     page_title="ASD Check - Home",
-     page_icon="👀",
-     menu_items={
-         'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
-         'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': '''ASD WebApp.
-         https://github.com/Rchatru/         
-         Roberto Chávez Trujillo.'''
-     }
- )
+    page_title="ASD Check - Home",
+    page_icon="👀",
+    layout="centered",
+    initial_sidebar_state="auto",
+    menu_items={
+        'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
+        'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
+        'About': "# ASD WebApp. Roberto Chávez Trujillo."
+    }
+)
 
 st.title('ASD WebApp')
 
