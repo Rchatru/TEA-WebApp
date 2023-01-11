@@ -42,9 +42,9 @@ columns=['FixationPointX_(MCSpx)', 'FixationPointY_(MCSpx)', 'Fixation', 'Saccad
 )
 
 st.caption('''
-Nota: El modelo actual desarrollado sólo precisa los datos de la escena 6 y se basa únicamente en las variables 
+Note: The current model developed is only accurate for scene 6 data and is based only on the variables: 
 `['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']`.
-También se espera que el fichero de datos se encuentre estandarizado y codificado mediante One-Hot Encoding.
+Also, the data file is expected to be standardised and encoded using One-Hot Encoding.
 ''')
 
  # Upload individual's data to be tested
@@ -64,7 +64,7 @@ if input is not None:
         st.text(df_info(df))
 
     st.subheader('''
-    Vista previa de los datos procesados:
+    Preview of the processed data:
     ''')
     new_df = check_df(df)
     st.dataframe(new_df.head())
@@ -77,10 +77,10 @@ if input is not None:
         st.session_state.predict_button1 = True
 
         st.markdown('''
-        ## ✅ Resultados 
+        ## ✅ Results 
         
-        A continuación, se muestra el dataset original junto a una nueva columna `Pred` que contiene la 
-        predicción del modelo para cada una de las muestras individuales (filas).
+        Below, the original dataset is shown together with a new `Pred` column containing the model
+        prediction for each of the individual samples (rows).
         ''')
         pred = predict(new_df)
                     
@@ -93,19 +93,20 @@ if input is not None:
         st.success('Prediction done!')
 
         st.markdown('''
-        ### 📊 Predicciones Individuales 
+        ### 📊 Individual Predictions 
         
-        Finalmente, se detalla la clasificación a nivel de individuo. Por un lado, se indica el número de muestras disponibles por cada individuo, así 
-        como la cantidad de ellas que han sido clasificadas como TEA y Control. Por otro lado, se tiene un deslizador que permite variar el umbral empleado 
-        para determinar la clasificación de cada individuo. 
+        Finally, classification at the individual level is detailed. On one hand, it indicates
+        the number of samples available for each individual, as well as the number of them that
+        have been classified as ASD and Control. On the other hand, there is a slider that allows
+        to vary the threshold used to determine the classification of each individual. 
         ''')
         # Ahora se muestran los resultados
 
         col1,col2 = st.columns(2)
-        col1.subheader('Predicciones individuales')
-        col2.subheader('Umbral de clasificación')
+        col1.subheader('Individual Predictions')
+        col2.subheader('Classification threshold')
     
-        umbral = col2.slider('Ajuste el umbral de decisión', min_value=50, max_value=100, step=1)           
+        umbral = col2.slider('Adjust the decision threshold', min_value=50, max_value=100, step=1)           
         
 
         cross_tab = crosstab(pred)
@@ -123,12 +124,12 @@ if input is not None:
                 for col in range(col_num):
                     ind = unique_id[row*col_num+col]
                     percent,tipo,color = metrics(pred,ind,umbral)
-                    grid[row][col].metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+                    grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
         else:
             for col in range(col_num):
                 ind = unique_id[row*col_num+col]
                 percent,tipo,color = metrics(pred,ind,umbral)
-                grid[row][col].metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+                grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
 
 
         # col = st.columns(len(unique_id))
@@ -139,7 +140,7 @@ if input is not None:
         
 
         
-        if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
+        if st.button('Refresh cache',help='Click to clear cache, double click to reload'):
             st.session_state.predict_button1 = False
             st.experimental_memo.clear()
     
@@ -155,17 +156,17 @@ else:
         placeholder = st.empty()
         # st.sidebar.caption('<p style="color:#484a55;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
         # st.sidebar.caption('Cargar fichero con los individuos de test', unsafe_allow_html=False)
-        st.sidebar.markdown('<p style="font-size:14px;">Cargar fichero con los individuos de test</p>', unsafe_allow_html=True)
+        st.sidebar.markdown('<p style="font-size:14px;">Upload file with test individuals</p>', unsafe_allow_html=True)
 
     # NOTE: Se puede sustituir por un botón utilizando session_state
     if not st.sidebar.checkbox("Test Dataset"):
-        placeholder.info("No se ha cargado ningún fichero. Seleccione uno o escoja el dataset de test disponible.")
+        placeholder.info("No file has been loaded. Select one or choose the available test dataset..")
     else:
         # st.session_state.man_test = 1
         df = upload_test_data()
             
         st.subheader('''
-        Vista previa de los datos de entrada:
+        Preview of input data:
         ''')
         
         st.dataframe(df.head())
@@ -179,10 +180,10 @@ else:
             st.session_state.predict_button2 = True
 
             st.markdown('''
-            ## ✅ Resultados 
+            ## ✅ Results 
             
-            A continuación, se muestra el dataset original junto a una nueva columna `Pred` que contiene la 
-            predicción del modelo para cada una de las muestras individuales (filas).
+            Below, the original dataset is shown together with a new `Pred` column containing the model
+            prediction for each of the individual samples (rows).
             ''')
             pred = predict(df)
                         
@@ -190,19 +191,20 @@ else:
             st.success('Prediction done!')
 
             st.markdown('''
-            ### 📊 Predicciones Individuales 
+            ### 📊 Individual Predictions 
             
-            Finalmente, se detalla la clasificación a nivel de individuo. Por un lado, se indica el número de muestras disponibles por cada individuo, así 
-            como la cantidad de ellas que han sido clasificadas como TEA y Control. Por otro lado, se tiene un deslizador que permite variar el umbral empleado 
-            para determinar la clasificación de cada individuo. 
+            Finally, classification at the individual level is detailed. On one hand, it indicates
+            the number of samples available for each individual, as well as the number of them that
+            have been classified as ASD and Control. On the other hand, there is a slider that allows
+            to vary the threshold used to determine the classification of each individual. 
             ''')
             # Ahora se muestran los resultados
 
             col1,col2 = st.columns(2)
-            col1.subheader('Predicciones individuales')
-            col2.subheader('Umbral de clasificación')
+            col1.subheader('Individual Predictions')
+            col2.subheader('Classification threshold')
       
-            umbral = col2.slider('Ajuste el umbral de decisión', min_value=50, max_value=100, step=1)           
+            umbral = col2.slider('Adjust the decision threshold', min_value=50, max_value=100, step=1)           
             
 
             cross_tab = crosstab(pred)
@@ -214,12 +216,12 @@ else:
             col = st.columns(len(unique_id))
             for col,ind in zip(col,unique_id):
                 percent,tipo,color = metrics(pred,ind,umbral)
-                col.metric(label="Individio " + str(ind), value=percent, delta=tipo, delta_color=color)
+                col.metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
 
             
 
             
-            if st.button('Refresh cache',help='Click para eliminar la cache, doble click para recargar'):
+            if st.button('Refresh cache',help='Click to clear cache, double click to reload'):
                 st.session_state.predict_button2 = False
                 st.experimental_memo.clear()
                 
@@ -229,5 +231,5 @@ else:
             csv = convert_df(pred)
             with st.sidebar:
                 st.header('2. Download results file')
-                st.sidebar.caption('<p style="color:#484a55;">Descarga fichero procesado junto a predicción</p>', unsafe_allow_html=True)
+                st.sidebar.caption('<p style="color:#484a55;">Download processed file together with prediction</p>', unsafe_allow_html=True)
                 st.download_button('Download file', csv, 'results.csv', 'text/csv',key='download-csv')
