@@ -104,7 +104,7 @@ if input is not None:
 
         col1,col2 = st.columns(2)
         col1.subheader('Individual Predictions')
-        col2.subheader('Classification threshold')
+        col2.subheader('Classification Threshold')
     
         umbral = col2.slider('Adjust the decision threshold', min_value=50, max_value=100, step=1)           
         
@@ -160,7 +160,7 @@ else:
 
     # NOTE: Se puede sustituir por un botón utilizando session_state
     if not st.sidebar.checkbox("Test Dataset"):
-        placeholder.info("No file has been loaded. Select one or choose the available test dataset..")
+        placeholder.info("No file has been loaded. Select one or choose the available test dataset.")
     else:
         # st.session_state.man_test = 1
         df = upload_test_data()
@@ -202,7 +202,7 @@ else:
 
             col1,col2 = st.columns(2)
             col1.subheader('Individual Predictions')
-            col2.subheader('Classification threshold')
+            col2.subheader('Classification Threshold')
       
             umbral = col2.slider('Adjust the decision threshold', min_value=50, max_value=100, step=1)           
             

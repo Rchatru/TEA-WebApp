@@ -3,22 +3,20 @@ import streamlit as st
 # import numpy as np
 
 st.set_page_config(
-     page_title="TEA WebApp",
+     page_title="ASD WebApp",
      page_icon="👀",
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
          'Report a bug': "https://github.com/Rchatru/TEA-WebApp/issues",
-         'About': "# TEA WebApp. Roberto Chávez Trujillo."
+         'About': "# ASD WebApp. Roberto Chávez Trujillo."
      }
  )
 
 st.markdown('''
 # 🎯 Models & Training
 
-En la presente página se pueden visualizar algunos de los resultados del 
-entrenamiento del algoritmo de clasificación. También, se permite aportar nuevos 
-datos de entremaniento en caso de disponer de ellos, para de este modo 
-reentrenar el modelo.
+On this page, it is shown some of the training results of the classification algorithm.
+It is also possible to provide new training data, if available, in order to re-train the model.
  ''')
 
 # Hack para quitar las flechas del widget
@@ -34,10 +32,10 @@ st.write(
 )
 
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Individuo 05c", "72.80%", "Control")
-col2.metric("Individuo 09c", "75.89%", "Control")
-col3.metric("Individuo 07p", "72.67%", "TEA",delta_color='inverse')
-col4.metric("Individuo 08p", "91.16%", "TEA",delta_color='inverse')
+col1.metric("Individual 05c", "72.80%", "Control")
+col2.metric("Individual 09c", "75.89%", "Control")
+col3.metric("Individual 07p", "72.67%", "ASD",delta_color='inverse')
+col4.metric("Individual 08p", "91.16%", "ASD",delta_color='inverse')
 
 with st.sidebar.header('1. Upload your new training data'):
     input = st.sidebar.file_uploader("Upload your file", type=["csv"])
@@ -48,8 +46,8 @@ with st.sidebar.header('2. Upload a new model file'):
     input = st.sidebar.file_uploader("Upload your file", type=[".json", ".bin", ".model"])
 
 
-st.image('static/Images/resultados.png',caption='Gráficas de entrenamiento', use_column_width=True)
+st.image('static/Images/resultados.png',caption='Training Graphics', use_column_width=True)
 
 col_1,col_2 = st.columns(2)
-col_1.image('static/Images/resultados_txt.png',caption='Métricas de entrenamiento, test y validación', use_column_width=True)
-col_2.image('static/Images/confusion_func.png',caption='Matriz de confusión normalizada', use_column_width=True)
+col_1.image('static/Images/resultados_txt.png',caption='Training, testing and validation metrics', use_column_width=True)
+col_2.image('static/Images/confusion_func.png',caption='Normalised confusion matrix', use_column_width=True)
