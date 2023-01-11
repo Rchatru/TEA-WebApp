@@ -3,9 +3,13 @@ import pandas as pd
 import numpy as np
 
 
+# Icon 👀 alojado en: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png
+# Ha sido necesario cambiar la ubicación del mismo ya que streamlit busca por defecto en maxcdn que ha sido cerrado
+# https://github.com/twitter/twemoji/issues/580
+
 st.set_page_config(
     page_title="ASD Check - Home",
-    page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png",
+    page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png", # Icon 👀
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
