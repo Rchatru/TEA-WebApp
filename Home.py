@@ -4,7 +4,7 @@ import numpy as np
 
 
 st.set_page_config(
-     page_title="ASD WebApp",
+     page_title="ASD-Check",
      page_icon="👀",
      menu_items={
          'Get Help': 'https://github.com/Rchatru/TEA-WebApp/',
