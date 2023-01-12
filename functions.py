@@ -3,12 +3,32 @@ from sklearn.base import TransformerMixin
 from sklearn.base import BaseEstimator
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
-# import pickle
 import io
-# import sys
 import time
-
 import xgboost
+import os
+import s3fs
+
+
+
+# h = pd.read_csv('s3://asd-check/test.csv',sep=';')
+# df.to_csv("s3://...", index=False)
+s3_base_url = 's3://asd-check/'
+s3_models_url = 's3://asd-check/models/'
+filename='test.csv'
+# Create connection object.
+# `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+fs = s3fs.S3FileSystem(anon=False)
+
+# Retrieve file contents.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
+def read_file(filename,encoding=""):
+   with fs.open(filename) as f:
+      if encoding == "":
+         return f.read()
+      else:
+         return f.read().decode(encoding)
 
 
 def convert_df(df):
