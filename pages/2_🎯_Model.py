@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import s3fs
+from functions import save2_s3
 # import pandas as pd
 # import numpy as np
 
