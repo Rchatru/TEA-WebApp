@@ -170,7 +170,9 @@ else:
         df = upload_test_data()
 
         modelos = show_s3_content('models/')
-        st.selectbox('Select a model to use in prediction',modelos)    
+
+        with st.sidebar:
+            st.selectbox('Select a model to use in prediction',modelos)    
 
         st.subheader('''
         Preview of input data:
