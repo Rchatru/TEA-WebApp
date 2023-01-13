@@ -169,7 +169,7 @@ else:
         # st.session_state.man_test = 1
         df = upload_test_data()
 
-        modelos = functions.show_s3_content('models/')
+        modelos = show_s3_content('models/')
         st.selectbox('Select a model to use in prediction',modelos)    
 
         st.subheader('''
