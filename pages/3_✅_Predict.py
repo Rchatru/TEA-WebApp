@@ -58,6 +58,11 @@ with st.sidebar.header('1. Upload your data file'):
 
 if input is not None:  
 
+    modelos = show_s3_content('models/')
+
+    with st.sidebar:
+        st.selectbox('Select a model to use in prediction',modelos)
+
     st.subheader('''
     Vista previa de los datos de entrada:
     ''')
