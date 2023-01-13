@@ -216,7 +216,7 @@ def check_df(df_in):
 
 # Es necesario añadir esta función al cache para que no se ejecute la predicción cada vez que se actualiza la página.
 @st.experimental_memo(suppress_st_warning=True)
-@st.cache(hash_funcs={xgboost.XGBClassifier: id})
+@st.cache(hash_funcs={'xgboost.XGBClassifier': id})
 def predict(df,downloaded_model):
    # FIXME: #5 Se obtienen diferentes resultados de clasificación subiendo archivo de datos vs test dataset.
    """
