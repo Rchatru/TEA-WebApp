@@ -58,8 +58,8 @@ def save2_s3(data, filename):
    # Uploads the given file using a managed uploader, which will split up large
    # files automatically and upload parts in parallel.
    try:
-      with open(data, 'rb') as d:
-         s3.upload_fileobj(d, 'asd-check', filename)
+      # with open(data, 'rb') as d:
+      s3.upload_fileobj(data, 'asd-check', filename)
    except ClientError as e:
       logging.exception(e)
       return False

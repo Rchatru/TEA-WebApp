@@ -52,7 +52,7 @@ with st.sidebar.header('2. Upload a new model file'):
     input = st.sidebar.file_uploader("Upload your file", type=[".json", ".bin", ".model"])
     
     if input is not None:
-        successs = save2_s3(input, 'models/')
+        successs = save2_s3(input, 'models/model2.bin')
         if successs:
             st.sidebar.success('File saved successfully.', icon='✔')
         else:
