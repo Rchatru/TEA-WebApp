@@ -33,8 +33,8 @@ def read_s3(filename,encoding=""):
 
    with fs.open(models_url + filename) as f:
       if encoding == "":
-         # return bytearray(f.read())
-         return f.read()
+         return bytearray(f.read())
+         # return f.read()
       else:
          return f.read().decode(encoding)
 
