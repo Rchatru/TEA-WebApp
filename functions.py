@@ -217,7 +217,7 @@ def check_df(df_in):
 # Es necesario añadir esta función al cache para que no se ejecute la predicción cada vez que se actualiza la página.
 @st.experimental_memo(suppress_st_warning=True)
 @st.cache(hash_funcs={'xgboost.XGBClassifier': id})
-def predict(df,downloaded_model):
+def predict(df,model):
    # FIXME: #5 Se obtienen diferentes resultados de clasificación subiendo archivo de datos vs test dataset.
    """
    Esta función permite realizar la clasificación de los datos en base al modelo XGBoost importado.
@@ -242,9 +242,9 @@ def predict(df,downloaded_model):
    # st.text('Y')
    # st.text(df_info(Y))
 
-   model = xgboost.XGBClassifier()
+   # model = xgboost.XGBClassifier()
    # model.load_model('static/XGBClassifier.bin')
-   model.load_model(downloaded_model)
+   # model.load_model(downloaded_model)
    
    # Importante para evitar bug de XGBoost https://github.com/dmlc/xgboost/issues/2073
    model._le = LabelEncoder().fit([0,1])
