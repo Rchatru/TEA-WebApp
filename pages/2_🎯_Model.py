@@ -50,6 +50,12 @@ st.sidebar.subheader("Or")
 with st.sidebar.header('2. Upload a new model file'):
     input = st.sidebar.file_uploader("Upload your file", type=[".json", ".bin", ".model"])
 
+    successs = save2_s3(input, 'models/')
+    if successs:
+        st.sidebar.success('File saved successfully.', icon='✔')
+    else:
+        st.sidebar.error('Error saving file.', icon='❌')
+
 
 st.image('static/Images/resultados.png',caption='Training Graphics', use_column_width=True)
 

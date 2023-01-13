@@ -8,14 +8,16 @@ import time
 import xgboost
 import os
 import s3fs
-
+import boto3
+from botocore.exceptions import ClientError
+import logging
 
 
 # h = pd.read_csv('s3://asd-check/test.csv',sep=';')
 # df.to_csv("s3://...", index=False)
 s3_base_url = 's3://asd-check/'
 s3_models_url = 's3://asd-check/models/'
-filename='test.csv'
+
 # Create connection object.
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
 fs = s3fs.S3FileSystem(anon=False)
@@ -23,12 +25,49 @@ fs = s3fs.S3FileSystem(anon=False)
 # Retrieve file contents.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 @st.experimental_memo(ttl=600)
-def read_file(filename,encoding=""):
+def read_s3(filename,encoding=""):
    with fs.open(filename) as f:
       if encoding == "":
          return f.read()
       else:
          return f.read().decode(encoding)
+
+
+
+def save2_s3(data, filename):
+   """
+   Esta función emplea la librería boto3 para subir archivos a s3 en la carpeta especificada.
+
+   Parameters
+   ----------
+   data : object
+      Archivo a subir.
+   filename : str
+      Nombre o ruta del archivo a guardar.
+
+   Returns
+   -------
+   bool
+      True si el archivo se subió correctamente, False en caso contrario.
+
+   """
+
+   # Create an S3 client
+   s3 = boto3.client('s3')
+
+   # Uploads the given file using a managed uploader, which will split up large
+   # files automatically and upload parts in parallel.
+   try:
+      with open(data, 'rb') as d:
+         s3.upload_fileobj(d, 'asd-check', filename)
+   except ClientError as e:
+      logging.exception(e)
+      return False
+   return True
+
+
+
+
 
 
 def convert_df(df):
