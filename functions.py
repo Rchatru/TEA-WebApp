@@ -32,7 +32,32 @@ def read_s3(filename,encoding=""):
       else:
          return f.read().decode(encoding)
 
+def show_s3_content(folder):
+   """
+   Esta función permite mostrar el contenido de una carpeta en s3.
 
+   Parameters
+   ----------
+   folder : str
+      Nombre de la carpeta en s3.
+
+   Returns
+   -------
+   files : list of str
+      Lista con el contenido de la carpeta.
+
+   """
+
+   # Create an S3 client
+   s3 = boto3.client('s3')
+
+   files = []
+   for key in s3.list_objects_v2(Bucket='asd-check',Prefix=folder)['Contents']:
+      
+      if not key['Key']=='models/':
+         files.append(key['Key'].replace('models/',''))
+
+   return(files)
 
 def save2_s3(data, filename):
    """
