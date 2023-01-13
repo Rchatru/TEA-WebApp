@@ -1,6 +1,5 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
+import boto3
 
 
 # Icon 👀 alojado en: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png
@@ -31,3 +30,7 @@ The application is divided into different sub-pages, each with a distinct purpos
 - Secondly, there is a [page](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Model) where it is possible to provide further training data to carry out a re-training of the algorithm (under construction).
 - Finally, in the [third](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
+
+if st.button('Go to Model'):      
+    s3 = boto3.client('s3')
+    s3.download_file('asd-check','models/XGBClassifier.bin','model.bin')

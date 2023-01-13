@@ -39,6 +39,8 @@ def read_s3(filename,encoding=""):
          return f.read().decode(encoding)
 
 
+
+
 def show_s3_content(folder):
    """
    Esta función permite mostrar el contenido de una carpeta en s3.
