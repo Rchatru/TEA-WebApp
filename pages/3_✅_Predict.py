@@ -59,9 +59,11 @@ with st.sidebar.header('1. Upload your data file'):
 if input is not None:  
 
     modelos = show_s3_content('models/')
+    default_model = modelos.index('XGBClassifier.bin')
 
     with st.sidebar:
-        st.selectbox('Select a model to use in prediction',modelos)
+        model_name = st.selectbox('Select a model to use in prediction',modelos,index=default_model)
+    m = read_s3(model_name)
 
     st.subheader('''
     Vista previa de los datos de entrada:
@@ -91,7 +93,7 @@ if input is not None:
         Below, the original dataset is shown together with a new `Pred` column containing the model
         prediction for each of the individual samples (rows).
         ''')
-        pred = predict(new_df)
+        pred = predict(new_df,m)
                     
         st.dataframe(pred)
 
@@ -177,7 +179,8 @@ else:
         modelos = show_s3_content('models/')
 
         with st.sidebar:
-            st.selectbox('Select a model to use in prediction',modelos)    
+            model_name = st.selectbox('Select a model to use in prediction',modelos) 
+        m = read_s3(model_name)   
 
         st.subheader('''
         Preview of input data:
@@ -199,7 +202,7 @@ else:
             Below, the original dataset is shown together with a new `Pred` column containing the model
             prediction for each of the individual samples (rows).
             ''')
-            pred = predict(df)
+            pred = predict(df,m)
                         
             st.dataframe(pred)
             st.success('Prediction done!')

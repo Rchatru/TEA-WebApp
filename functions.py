@@ -18,19 +18,25 @@ import logging
 s3_base_url = 's3://asd-check/'
 s3_models_url = 's3://asd-check/models/'
 
-# Create connection object.
-# `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-fs = s3fs.S3FileSystem(anon=False)
 
 # Retrieve file contents.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 @st.experimental_memo(ttl=600)
 def read_s3(filename,encoding=""):
-   with fs.open(filename) as f:
+
+   base_url = 'asd-check/'
+   models_url = 'asd-check/models/'
+
+   # Create connection object.
+   # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+   fs = s3fs.S3FileSystem(anon=False)
+
+   with fs.open(models_url + filename) as f:
       if encoding == "":
          return f.read()
       else:
          return f.read().decode(encoding)
+
 
 def show_s3_content(folder):
    """
@@ -210,7 +216,7 @@ def check_df(df_in):
 
 # Es necesario añadir esta función al cache para que no se ejecute la predicción cada vez que se actualiza la página.
 @st.experimental_memo(suppress_st_warning=True)
-def predict(df):
+def predict(df,downloaded_model):
    # FIXME: #5 Se obtienen diferentes resultados de clasificación subiendo archivo de datos vs test dataset.
    """
    Esta función permite realizar la clasificación de los datos en base al modelo XGBoost importado.
@@ -236,7 +242,9 @@ def predict(df):
    # st.text(df_info(Y))
 
    model = xgboost.XGBClassifier()
-   model.load_model('static/XGBClassifier.bin')
+   # model.load_model('static/XGBClassifier.bin')
+   model.load_model(downloaded_model)
+   
    # Importante para evitar bug de XGBoost https://github.com/dmlc/xgboost/issues/2073
    model._le = LabelEncoder().fit([0,1])
 
