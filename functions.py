@@ -243,7 +243,8 @@ def predict(df,model):
    # st.text('Y')
    # st.text(df_info(Y))
 
-   model = xgboost.XGBClassifier()
+   # model = xgboost.XGBClassifier()
+   model = xgboost.Booster()
    # model.load_model('static/XGBClassifier.bin')
    model.load_model('s3://asd-check/models/XGBClassifier.bin')
    
