@@ -19,25 +19,52 @@ s3_base_url = 's3://asd-check/'
 s3_models_url = 's3://asd-check/models/'
 
 
+# Esta función descarga el modelo de forma que no es compatible con load_model
+# xgboost.load_model() necesita como argumento una ruta al archivo.
+# --------------------------------- # 
 # Retrieve file contents.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.experimental_memo(ttl=600)
-def read_s3(filename,encoding=""):
+# @st.experimental_memo(ttl=600)
+# def read_s3(filename,encoding=""):
 
-   base_url = 'asd-check/'
-   models_url = 'asd-check/models/'
+#    base_url = 'asd-check/'
+#    models_url = 'asd-check/models/'
 
-   # Create connection object.
-   # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-   fs = s3fs.S3FileSystem(anon=False)
+#    # Create connection object.
+#    # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+#    fs = s3fs.S3FileSystem(anon=False)
 
-   with fs.open(models_url + filename) as f:
-      if encoding == "":
-         return bytearray(f.read())
-         # return f.read()
-      else:
-         return f.read().decode(encoding)
+#    with fs.open(models_url + filename) as f:
+#       if encoding == "":
+#          return bytearray(f.read())
+#          # return f.read()
+#       else:
+#          return f.read().decode(encoding)
+# --------------------------------- #
 
+def download_from_s3(filename):
+   """
+   Esta función descarga un archivo desde s3 usando boto3.
+
+   Parameters
+   ----------
+   filename : str
+      Nombre del archivo a descargar.
+
+   Returns
+   -------
+   filename : str
+      Nombre del archivo descargado.
+
+   """
+   
+   # Create a s3 client
+   s3 = boto3.client('s3')
+   
+   # Download the file
+   s3.download_file('asd-check', 'models/'+filename, filename)
+
+   return filename
 
 
 
