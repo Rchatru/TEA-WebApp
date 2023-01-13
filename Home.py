@@ -39,5 +39,6 @@ if st.button('Go to Model'):
     model = xgboost.XGBClassifier()
 #    model = xgboost.Booster()
     model.load_model('model.bin')
+    
    # model.load_model('s3://asd-check/models/XGBClassifier.bin')
 #    model.load_model(downloaded_model)

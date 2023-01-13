@@ -181,6 +181,8 @@ else:
         with st.sidebar:
             model_name = st.selectbox('Select a model to use in prediction',modelos) 
         m = read_s3(model_name)   
+        s3 = boto3.client('s3')
+        s3.download_file('asd-check','models/XGBClassifier.bin','model.bin')
 
         st.subheader('''
         Preview of input data:
@@ -202,7 +204,7 @@ else:
             Below, the original dataset is shown together with a new `Pred` column containing the model
             prediction for each of the individual samples (rows).
             ''')
-            pred = predict(df,m)
+            pred = predict(df,'model.bin')
                         
             st.dataframe(pred)
             st.success('Prediction done!')
