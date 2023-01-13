@@ -66,3 +66,6 @@ st.image('static/Images/resultados.png',caption='Training Graphics', use_column_
 col_1,col_2 = st.columns(2)
 col_1.image('static/Images/resultados_txt.png',caption='Training, testing and validation metrics', use_column_width=True)
 col_2.image('static/Images/confusion_func.png',caption='Normalised confusion matrix', use_column_width=True)
+
+st.markdown('''## ⚙ Manage Stored Models''')
+

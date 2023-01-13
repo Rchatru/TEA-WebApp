@@ -41,6 +41,8 @@ s3_models_url = 's3://asd-check/models/'
 #          return f.read().decode(encoding)
 # --------------------------------- #
 
+
+# @st.experimental_memo(ttl=600)
 def download_from_s3(filename):
    """
    Esta función descarga un archivo desde s3 usando boto3.

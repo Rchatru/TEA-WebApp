@@ -1,7 +1,4 @@
 import streamlit as st
-import boto3
-import xgboost
-
 
 # Icon 👀 alojado en: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png
 # Ha sido necesario cambiar la ubicación del mismo ya que streamlit busca por defecto en maxcdn que ha sido cerrado
@@ -32,13 +29,3 @@ The application is divided into different sub-pages, each with a distinct purpos
 - Finally, in the [third](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
 
-if st.button('Go to Model'):      
-    s3 = boto3.client('s3')
-    s3.download_file('asd-check','models/XGBClassifier.bin','model.bin')
-
-    model = xgboost.XGBClassifier()
-#    model = xgboost.Booster()
-    model.load_model('model.bin')
-    
-   # model.load_model('s3://asd-check/models/XGBClassifier.bin')
-#    model.load_model(downloaded_model)
