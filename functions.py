@@ -33,6 +33,7 @@ def read_s3(filename,encoding=""):
 
    with fs.open(models_url + filename) as f:
       if encoding == "":
+         # return bytearray(f.read())
          return f.read()
       else:
          return f.read().decode(encoding)
@@ -242,9 +243,9 @@ def predict(df,model):
    # st.text('Y')
    # st.text(df_info(Y))
 
-   # model = xgboost.XGBClassifier()
+   model = xgboost.XGBClassifier()
    # model.load_model('static/XGBClassifier.bin')
-   # model.load_model(downloaded_model)
+   model.load_model('s3://asd-check/models/XGBClassifier.bin')
    
    # Importante para evitar bug de XGBoost https://github.com/dmlc/xgboost/issues/2073
    model._le = LabelEncoder().fit([0,1])
