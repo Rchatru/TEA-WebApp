@@ -89,12 +89,14 @@ def show_s3_content(folder):
    s3 = boto3.client('s3')
 
    files = []
+   all_files = []
    for key in s3.list_objects_v2(Bucket='asd-check',Prefix=folder)['Contents']:
       
+      all_files.append(key['Key'].replace(folder,''))
       if not key['Key']=='models/':
          files.append(key['Key'].replace(folder,''))
 
-   return(files)
+   return(files,all_files)
 
 def save2_s3(data, filename):
    """
@@ -143,8 +145,8 @@ def show_file_structure(folder):
 
    """
 
-   files = show_s3_content(folder)
-   for file in files:
+   _,all_files = show_s3_content(folder)
+   for file in all_files:
       if file[-1] == '/':
          st.write('└── ' + file)
       else:

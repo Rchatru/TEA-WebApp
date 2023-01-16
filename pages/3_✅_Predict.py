@@ -58,7 +58,7 @@ with st.sidebar.header('1. Upload your data file'):
 
 if input is not None:  
 
-    modelos = show_s3_content('models/')
+    modelos,_ = show_s3_content('models/')
     default_model = modelos.index('XGBClassifier.bin')
 
     with st.sidebar:
@@ -176,7 +176,7 @@ else:
         # st.session_state.man_test = 1
         df = upload_test_data()
 
-        modelos = show_s3_content('models/')
+        modelos,_ = show_s3_content('models/')
 
         with st.sidebar:
             model_name = st.selectbox('Select a model to use in prediction',modelos) 
