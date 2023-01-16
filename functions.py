@@ -96,7 +96,7 @@ def show_s3_content(folder):
          files.append(key['Key'].replace(folder,''))
 
    all_files = files.copy()
-   all_files.insert(1,folder)
+   all_files.insert(0,folder)
 
    return(files,all_files)
 
