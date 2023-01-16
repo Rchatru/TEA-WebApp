@@ -81,11 +81,18 @@ with st.expander('Show file structure',expanded=True):
 
 st.markdown('''### Choose the model to delete''')
 
-modelos,_ = show_s3_content('models/')
-eliminar = st.selectbox('Select the model to delete',modelos)
+def selected():
+    option_selected = True
+    return option_selected
 
-if eliminar:
-    st.warning(f'Are you sure you want to delete the model/s: {eliminar}?')
+modelos,_ = show_s3_content('models/')
+eliminar = st.selectbox('Select the model to delete',modelos,WidgetCallback=selected())
+
+
+
+if option_selected:
+    option_selected = False
+    st.warning(f'Are you sure you want to delete the model/s: *{eliminar}*?')
     if st.button('Delete'):
         my_bar = st.progress(0)
         for progress in range(100):
@@ -93,4 +100,4 @@ if eliminar:
             my_bar.progress(progress + 1)
         my_bar.empty()
         st.success(f'Model/s {eliminar} deleted successfully.')
-        st.balloons()
+   
