@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import s3fs
 from functions import save2_s3
+from functions import show_file_structure
 from datetime import datetime
 # import pandas as pd
 # import numpy as np
@@ -69,3 +70,9 @@ col_2.image('static/Images/confusion_func.png',caption='Normalised confusion mat
 
 st.markdown('''## ⚙ Manage Stored Models''')
 
+text = show_file_structure('models/')
+
+st.text(text)
+
+with st.expander('Show file structure'):
+    st.code(text)
