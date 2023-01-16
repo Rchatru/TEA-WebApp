@@ -150,9 +150,9 @@ def show_file_structure(folder):
    _,all_files = show_s3_content(folder)
    for file in all_files:
       if file[-1] == '/':
-         st.markdown('└── ' + file)
+         st.text('└── ' + file)
       else:
-         st.markdown('    └── ' + file)
+         st.text('    └── ' + file)
 
 
 
