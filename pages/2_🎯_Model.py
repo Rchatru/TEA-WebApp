@@ -101,6 +101,7 @@ if eliminar:
             correcto = delete_from_s3(el)
         if correcto:
             st.success(f'Model/s *{eliminar}* deleted successfully.')
+            text = show_file_structure('models/')
 
 
    
