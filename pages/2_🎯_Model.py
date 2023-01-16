@@ -81,6 +81,7 @@ with st.expander('Show file structure',expanded=True):
 
 st.markdown('''### Choose the model to delete''')
 
+option_selected = False
 def selected():
     option_selected = True
     return option_selected
