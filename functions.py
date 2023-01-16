@@ -146,13 +146,17 @@ def show_file_structure(folder):
    None.
 
    """
-
+   text = ''
    _,all_files = show_s3_content(folder)
    for file in all_files:
       if file[-1] == '/':
          st.text('└── ' + file)
+         text = ('└── ' + file + '\n')
       else:
          st.text('    └── ' + file)
+         text = ('    └── ' + file + '\n')
+
+   return text
 
 
 

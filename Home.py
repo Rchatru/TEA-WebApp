@@ -30,4 +30,6 @@ The application is divided into different sub-pages, each with a distinct purpos
 - Finally, in the [third](https://asd-check.streamlit.app/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
 
-fc.show_file_structure('models/')
+text = fc.show_file_structure('models/')
+
+st.markdown(text)
