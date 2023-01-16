@@ -81,7 +81,8 @@ with st.expander('Show file structure',expanded=True):
 st.markdown('''### Choose the model to delete''')
 
 modelos,_ = show_s3_content('models/')
-eliminar = st.selectbox('Select the model to delete',modelos.insert(0,'<Select a file>'),index=0)
+modelos.insert(0,'<Select a file>')
+eliminar = st.selectbox('Select the model to delete',modelos,index=0)
 
 
 
