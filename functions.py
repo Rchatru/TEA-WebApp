@@ -151,10 +151,10 @@ def show_file_structure(folder):
    for file in all_files:
       if file[-1] == '/':
          st.text('└── ' + file)
-         text = ('└── ' + file + '\n')
+         text.join('└── ' + file + '\n')
       else:
          st.text('    └── ' + file)
-         text = ('    └── ' + file + '\n')
+         text.join('    └── ' + file + '\n')
 
    return text
 
