@@ -154,7 +154,7 @@ def show_file_structure(folder):
          text = text + ('└── ' + file + '  \n')
       else:
          # st.text('    └── ' + file)
-         text = text + ('    └── ' + file + '  \n')
+         text = text + ('    └── ' + file + '  \n')
 
    text = ''.join(text)
    return text
