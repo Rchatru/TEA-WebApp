@@ -17,7 +17,7 @@ st.set_page_config(
     }
 )
 
-st.title('ASD WebApp')
+st.title('🏠 ASD WebApp')
 
 st.markdown('''
 WebApp built with Python and Streamlit designed to provide a more user-friendly interaction with the results of the PhD research
