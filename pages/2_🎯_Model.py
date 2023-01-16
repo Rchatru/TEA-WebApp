@@ -95,4 +95,6 @@ if eliminar is not '<Select a file>':
             my_bar.progress(progress + 1)
         my_bar.empty()
         st.success(f'Model/s {eliminar} deleted successfully.')
+
+st.multiselect('Select the model/s to delete',modelos)
    
