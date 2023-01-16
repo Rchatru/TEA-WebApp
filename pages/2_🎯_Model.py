@@ -103,5 +103,7 @@ if eliminar:
             st.success(f'Model/s *{eliminar}* deleted successfully.')
             text = show_file_structure('models/')
 
-
+            with st.expander('Show file structure',expanded=True):
+                # st.text(text)
+                st.code(text)
    
