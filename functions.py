@@ -133,6 +133,32 @@ def save2_s3(data, filename):
    return True
 
 
+def delete_from_s3(filename):
+   """
+   Esta función emplea la librería boto3 para eliminar archivos de s3.
+
+   Parameters
+   ----------
+   filename : str
+      Nombre o ruta del archivo a eliminar.
+
+   Returns
+   -------
+   bool
+      True si el archivo se eliminó correctamente, False en caso contrario.
+
+   """
+
+   # Create an S3 client
+   s3 = boto3.client('s3')
+
+   try:
+      s3.delete_object(Bucket='asd-check', Key='models/' + filename)
+   except ClientError as e:
+      logging.exception(e)
+      return False
+   return True
+
 def show_file_structure(folder):
    """
    Imprime en pantalla la estructura de carpetas y archivos de s3 dados por la fucnión show_s3_content().

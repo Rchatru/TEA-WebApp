@@ -4,6 +4,7 @@ import s3fs
 from functions import save2_s3
 from functions import show_file_structure
 from functions import show_s3_content
+from functions import delete_from_s3
 from datetime import datetime
 import time
 # import pandas as pd
@@ -96,7 +97,10 @@ if eliminar:
             time.sleep(0.01)
             my_bar.progress(progress + 1)
         my_bar.empty()
-        st.success(f'Model/s *{eliminar}* deleted successfully.')
+        for el in eliminar:
+            correcto = delete_from_s3(el)
+        if correcto:
+            st.success(f'Model/s *{eliminar}* deleted successfully.')
 
 
    
