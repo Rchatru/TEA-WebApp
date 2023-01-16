@@ -10,12 +10,6 @@ import time
 # import numpy as np
 
 
-if 'pressed' not in st.session_state:
-    st.session_state.pressed = False
-
-if 'del_button' not in st.session_state:
-    st.session_state.del_button = False
-
 st.set_page_config(
     page_title="ASD Check - Model",
     page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png",
@@ -81,27 +75,19 @@ st.markdown('''## ⚙ Manage Stored Models''')
 text = show_file_structure('models/')
 
 with st.expander('Show file structure',expanded=True):
-    st.text(text)
-
+    # st.text(text)
     st.code(text)
 
 st.markdown('''### Choose the model to delete''')
 
-
-def selected():
-    st.session_state.pressed = True
-
-
 modelos,_ = show_s3_content('models/')
-eliminar = st.selectbox('Select the model to delete',modelos,on_change=selected)
+eliminar = st.selectbox('Select the model to delete',modelos.insert(0,'<Select a file>'),index=0)
 
 
 
-if st.session_state.pressed:
-    st.session_state.pressed = False
+if eliminar is not '<Select a file>':
     st.warning(f'Are you sure you want to delete the model/s: *{eliminar}*?')
-    if st.button('Delete') or st.session_state.del_button:
-        st.session_state.del_button = True
+    if st.button('Delete'):
         my_bar = st.progress(0)
         for progress in range(100):
             time.sleep(0.01)
