@@ -96,7 +96,7 @@ def show_s3_content(folder):
          files.append(key['Key'].replace(folder,''))
 
    all_files = files.copy()
-   all_files.insert(len(all_files),folder)
+   all_files.insert(1,folder)
 
    return(files,all_files)
 
@@ -150,9 +150,9 @@ def show_file_structure(folder):
    _,all_files = show_s3_content(folder)
    for file in all_files:
       if file[-1] == '/':
-         st.write('└── ' + file)
+         st.markdown('└── ' + file)
       else:
-         st.write('    └── ' + file)
+         st.markdown('    └── ' + file)
 
 
 
