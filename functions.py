@@ -82,6 +82,8 @@ def show_s3_content(folder):
    -------
    files : list of str
       Lista con el contenido de la carpeta.
+   all_files : list of str
+      Lista con el contenido de la carpeta y la carpeta en sí.
 
    """
 
