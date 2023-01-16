@@ -87,7 +87,7 @@ def selected():
     return option_selected
 
 modelos,_ = show_s3_content('models/')
-eliminar = st.selectbox('Select the model to delete',modelos,on_change=selected())
+eliminar = st.selectbox('Select the model to delete',modelos,on_change=selected)
 
 
 
