@@ -26,8 +26,8 @@ aimed at the diagnosis of Autism Spectrum Disorder using eye-tracker eye dynamic
 The application is divided into different sub-pages, each with a distinct purpose:
 
 - First of all, there is the "Home" screen, which contains a basic introduction and from which the rest of the screens can be accessed.
-- Secondly, there is a [page](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Model) where it is possible to provide further training data to carry out a re-training of the algorithm (under construction).
-- Finally, in the [third](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
+- Secondly, there is a [page](https://asd-check.streamlit.app/Model) where it is possible to provide further training data to carry out a re-training of the algorithm (under construction).
+- Finally, in the [third](https://asd-check.streamlit.app/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
 
 fc.show_file_structure('models/')
