@@ -33,3 +33,5 @@ The application is divided into different sub-pages, each with a distinct purpos
 text = fc.show_file_structure('models/')
 
 st.markdown(text)
+st.write(text)
+st.text(text)
