@@ -10,6 +10,9 @@ import time
 # import numpy as np
 
 
+if 'pressed' not in st.session_state:
+    st.session_state.pressed = False
+
 st.set_page_config(
     page_title="ASD Check - Model",
     page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png",
@@ -81,18 +84,18 @@ with st.expander('Show file structure',expanded=True):
 
 st.markdown('''### Choose the model to delete''')
 
-option_selected = False
+
 def selected():
-    option_selected = True
-    return option_selected
+    st.session_state.pressed = True
+
 
 modelos,_ = show_s3_content('models/')
 eliminar = st.selectbox('Select the model to delete',modelos,on_change=selected)
 
 
 
-if option_selected:
-    option_selected = False
+if st.session_state.pressed:
+    st.session_state.pressed = False
     st.warning(f'Are you sure you want to delete the model/s: *{eliminar}*?')
     if st.button('Delete'):
         my_bar = st.progress(0)
