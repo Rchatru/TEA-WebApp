@@ -1,4 +1,5 @@
 import streamlit as st
+import functions as fc
 
 # Icon 👀 alojado en: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png
 # Ha sido necesario cambiar la ubicación del mismo ya que streamlit busca por defecto en maxcdn que ha sido cerrado
@@ -29,3 +30,4 @@ The application is divided into different sub-pages, each with a distinct purpos
 - Finally, in the [third](https://share.streamlit.io/rchatru/tea-webapp/Home.py/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
 ''')
 
+fc.show_file_structure('models/')

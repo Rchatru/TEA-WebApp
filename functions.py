@@ -127,7 +127,28 @@ def save2_s3(data, filename):
    return True
 
 
+def show_file_structure(folder):
+   """
+   Imprime en pantalla la estructura de carpetas y archivos de s3 dados por la fucnión show_s3_content().
+   Se utiliza st.write() para mostrar el contenido usando guiones y líneas.
 
+   Parameters
+   ----------
+   folder : str
+      Nombre de la carpeta en s3.
+   
+   Returns
+   -------
+   None.
+
+   """
+
+   files = show_s3_content(folder)
+   for file in files:
+      if file[-1] == '/':
+         st.write('└── ' + file)
+      else:
+         st.write('    └── ' + file)
 
 
 
