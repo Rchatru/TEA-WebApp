@@ -13,6 +13,9 @@ import time
 if 'pressed' not in st.session_state:
     st.session_state.pressed = False
 
+if 'del_button' not in st.session_state:
+    st.session_state.del_button = False
+
 st.set_page_config(
     page_title="ASD Check - Model",
     page_icon="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f440.png",
@@ -97,7 +100,8 @@ eliminar = st.selectbox('Select the model to delete',modelos,on_change=selected)
 if st.session_state.pressed:
     st.session_state.pressed = False
     st.warning(f'Are you sure you want to delete the model/s: *{eliminar}*?')
-    if st.button('Delete'):
+    if st.button('Delete') or st.session_state.del_button:
+        st.session_state.del_button = True
         my_bar = st.progress(0)
         for progress in range(100):
             time.sleep(0.01)
