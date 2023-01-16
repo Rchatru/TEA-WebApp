@@ -92,7 +92,7 @@ def show_s3_content(folder):
    all_files = []
    for key in s3.list_objects_v2(Bucket='asd-check',Prefix=folder)['Contents']:
       
-      all_files.append(key['Key'].replace(folder,''))
+      all_files.append(key['Key'])
       if not key['Key']=='models/':
          files.append(key['Key'].replace(folder,''))
 
