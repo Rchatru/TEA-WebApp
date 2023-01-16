@@ -3,7 +3,9 @@ import os
 import s3fs
 from functions import save2_s3
 from functions import show_file_structure
+from functions import show_s3_content
 from datetime import datetime
+import time
 # import pandas as pd
 # import numpy as np
 
@@ -72,7 +74,23 @@ st.markdown('''## ⚙ Manage Stored Models''')
 
 text = show_file_structure('models/')
 
-st.text(text)
+with st.expander('Show file structure',expanded=True):
+    st.text(text)
 
-with st.expander('Show file structure'):
     st.code(text)
+
+st.markdown('''### Choose the model to delete''')
+
+modelos = show_s3_content('models/')
+eliminar = st.selectbox('Select the model to delete',modelos)
+
+if eliminar:
+    st.warning(f'Are you sure you want to delete the model/s: {eliminar}?')
+    if st.button('Delete'):
+        my_bar = st.progress(0)
+        for progress in range(100):
+            time.sleep(0.01)
+            my_bar.progress(progress + 1)
+        my_bar.empty()
+        st.success(f'Model/s {eliminar} deleted successfully.')
+        st.balloons()
