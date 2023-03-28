@@ -90,8 +90,9 @@ eliminar = st.multiselect('Select the model/s to delete',modelos)
 
 # if eliminar is not '<Select a file>':
 if eliminar:
-    st.warning(f'Are you sure you want to delete the model/s: *{[el for el in eliminar]}*?')
-    if st.button('Delete'):
+    st.warning(f'Are you sure you want to delete the model/s: *{[el for el in eliminar]}*, (specify pin)?')
+    password = st.text_input("Enter a password", type="password")
+    if st.button('Delete') and password == st.secrets["PIN"]:
         my_bar = st.progress(0)
         for progress in range(100):
             time.sleep(0.01)
