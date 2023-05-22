@@ -1,6 +1,6 @@
 # TEA-WebApp
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://rchatru-tea-webapp-home-ee9j49.streamlitapp.com/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://asd-check.streamlit.app/)
 
 WebApp construida con Python y Streamlit diseñada para proporcionar una interacción más amigable con los resultados de la investigación del presente doctorado orientado al diagnóstico del Trastorno del Espectro Autista a partir de datos de la dinámica ocular de los participantes obtenida mediante eye-tracker.
 
