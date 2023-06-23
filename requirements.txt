@@ -9,4 +9,4 @@ s3fs
 boto3
 botocore
 aiobotocore
-urllib3<2
+urllib3==1.26.16
