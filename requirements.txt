@@ -10,4 +10,4 @@ boto3==1.26.*
 botocore==1.29.*
 aiobotocore
 urllib3==1.26.16
-streamlit==1.23.0
+streamlit==1.22.0
