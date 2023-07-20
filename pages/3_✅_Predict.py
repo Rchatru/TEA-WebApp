@@ -68,6 +68,7 @@ if input is not None:
     st.subheader('''
     Vista previa de los datos de entrada:
     ''')
+    st.cache_data
     df = pd.read_csv(input,sep=';')
     st.dataframe(df.head())
 
@@ -77,6 +78,7 @@ if input is not None:
     st.subheader('''
     Preview of the processed data:
     ''')
+    st.cache_data
     new_df = check_df(df)
     st.dataframe(new_df.head())
 
