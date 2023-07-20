@@ -237,6 +237,7 @@ def OneHotEncode(original_df, feature_to_encode):
 
 vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
 
+st.cache_data
 def check_df(df_in):
    # En primer lugar ajusta el nombre de las columnas a la forma requerida
    df_in.rename(columns=lambda x: x.replace(" ", "_"), inplace=True)

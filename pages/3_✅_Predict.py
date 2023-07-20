@@ -27,6 +27,12 @@ if "predict_button1" not in st.session_state:
 if "predict_button2" not in st.session_state:
     st.session_state.predict_button2 = False
 
+st.cache_data
+def load_print(input):
+    df = pd.read_csv(input,sep=';')
+    st.dataframe(df.head())
+    return df
+
 st.markdown('''
 # ✅ Results & Predictions 
  
@@ -68,9 +74,8 @@ if input is not None:
     st.subheader('''
     Vista previa de los datos de entrada:
     ''')
-    st.cache_data
-    df = pd.read_csv(input,sep=';')
-    st.dataframe(df.head())
+
+    df = load_print(input)
 
     with st.expander("See dataset debug info"):
         st.text(df_info(df))
@@ -78,7 +83,6 @@ if input is not None:
     st.subheader('''
     Preview of the processed data:
     ''')
-    st.cache_data
     new_df = check_df(df)
     st.dataframe(new_df.head())
 
