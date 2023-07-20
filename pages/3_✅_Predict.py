@@ -138,7 +138,7 @@ if input is not None:
                     grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
             else:
                 for col in range(col_num):
-                    ind = unique_id[row*col_num+col]
+                    ind = unique_id[row*max_col+col]
                     percent,tipo,color = metrics(pred,ind,umbral)
                     grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
 
