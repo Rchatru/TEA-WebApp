@@ -133,12 +133,12 @@ if input is not None:
             if row == row_num-1 and len(unique_id) % max_col != 0:
                 col_num = len(unique_id) % max_col
                 for col in range(col_num):
-                    ind = unique_id[row*col_num+col]
+                    ind = unique_id[row*max_col+col]
                     percent,tipo,color = metrics(pred,ind,umbral)
                     grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
             else:
                 for col in range(col_num):
-                    ind = unique_id[row*max_col+col]
+                    ind = unique_id[row*col_num+col]
                     percent,tipo,color = metrics(pred,ind,umbral)
                     grid[row][col].metric(label="Individual " + str(ind), value=percent, delta=tipo, delta_color=color)
 
