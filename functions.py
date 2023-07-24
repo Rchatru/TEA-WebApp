@@ -42,7 +42,7 @@ s3_models_url = 's3://asd-check/models/'
 # --------------------------------- #
 
 
-# @st.experimental_memo(ttl=600)
+@st.cache_resource
 def download_from_s3(filename):
    """
    Esta función descarga un archivo desde s3 usando boto3.
@@ -188,7 +188,7 @@ def show_file_structure(folder):
    return text
 
 
-
+@st.cache_data
 def convert_df(df):
    """
    Esta función permite convertir un dataframe en un archivo .csv listo para descargar.
@@ -200,7 +200,7 @@ def convert_df(df):
 
    return df.to_csv().encode('utf-8')
 
-
+@st.cache_data
 def df_info(df):
    """
    Esta función captura el textI/O enviado directamente a consola por métodos como df.info().
@@ -216,7 +216,7 @@ def df_info(df):
    return s
 
 
-
+@st.cache_data
 class stdScaler(TransformerMixin, BaseEstimator):
 
     def fit(self, X, y=None):
@@ -228,7 +228,7 @@ class stdScaler(TransformerMixin, BaseEstimator):
         return (X - self.means_[:X.shape[1]]) / self.std_dev_[:X.shape[1]]
 
 
-
+@st.cache_data
 def OneHotEncode(original_df, feature_to_encode):
     encoded_cols = pd.get_dummies(original_df[feature_to_encode])
     res = pd.concat([original_df, encoded_cols], axis=1)
@@ -237,7 +237,7 @@ def OneHotEncode(original_df, feature_to_encode):
 
 vars = ['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']
 
-st.cache_data
+@st.cache_data
 def check_df(df_in):
    # En primer lugar ajusta el nombre de las columnas a la forma requerida
    df_in.rename(columns=lambda x: x.replace(" ", "_"), inplace=True)
@@ -306,7 +306,7 @@ def check_df(df_in):
 
 # Es necesario añadir esta función al cache para que no se ejecute la predicción cada vez que se actualiza la página.
 # Deleted suppress_st_warning=True
-st.experimental_memo
+@st.cache_data
 def predict(df,downloaded_model):
    # FIXME: #5 Se obtienen diferentes resultados de clasificación subiendo archivo de datos vs test dataset.
    """
@@ -360,6 +360,7 @@ def predict(df,downloaded_model):
 
    return df_result
 
+@st.cache_data
 def crosstab(df):
    """
    Función que muestra los resultados de la predicción.
@@ -464,7 +465,7 @@ def metrics(df,ind,umbral):
    return percent,tipo,color
 
 
-
+@st.cache_data
 def upload_test_data():
    """
    Esta función permite subir un archivo de testeo para realizar la clasificación. Se ha escogido un dataset ya procesado en el 
