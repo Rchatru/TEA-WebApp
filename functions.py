@@ -216,7 +216,7 @@ def df_info(df):
    return s
 
 
-@st.cache_data
+@st.cache_resource
 class stdScaler(TransformerMixin, BaseEstimator):
 
     def fit(self, X, y=None):
