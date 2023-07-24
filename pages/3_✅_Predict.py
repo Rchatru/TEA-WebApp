@@ -27,7 +27,7 @@ if "predict_button1" not in st.session_state:
 if "predict_button2" not in st.session_state:
     st.session_state.predict_button2 = False
 
-st.cache_data
+@st.cache_data
 def load_print(input):
     df = pd.read_csv(input,sep=';')
     st.dataframe(df.head())
