@@ -17,17 +17,16 @@ st.set_page_config(
     }
 )
 
-st.title('🏠 ASD WebApp')
+st.title('🔎 ASD-check WebApp')
 
 st.markdown('''
-WebApp built with Python and Streamlit designed to provide a more user-friendly interaction with the results of the PhD research
-aimed at the diagnosis of Autism Spectrum Disorder using eye-tracker eye dynamics data of the participants.
+This web application, developed using Python and Streamlit, is designed to offer a user-friendly interface for interacting with the results of PhD research focused on diagnosing Autism Spectrum Disorder (ASD) using eye-tracking data.
 
-The application is divided into different sub-pages, each with a distinct purpose:
+The application is organized into several sections, each with a distinct purpose:
 
-- First of all, there is the "Home" screen, which contains a basic introduction and from which the rest of the screens can be accessed.
-- Secondly, there is a [page](https://asd-check.streamlit.app/Model) where it is possible to provide further training data to carry out a re-training of the algorithm (under construction), or the introduction and management of different trained models.
-- Finally, in the [third](https://asd-check.streamlit.app/Predict) section, it is possible to enter the data of a specific individual in order to carry out a diagnosis by the model.
+1. [Home](https://asd-check.streamlit.app/): This introductory page provides an overview and allows access to the other sections.
+2. [Models & Training](https://asd-check.streamlit.app/Model): Here, users can provide additional training data to re-train the algorithm (under construction) and manage different trained models.
+3. [Results & Predictions](https://asd-check.streamlit.app/Predict): This section enables users to input data for a specific individual to obtain a diagnosis from the trained model.
 ''')
 
 
