@@ -36,12 +36,15 @@ def load_print(input):
 st.markdown('''
 # ✅ Results & Predictions 
  
-In this screen it is possible to consult the prediction for a specific individual or for groups made by the trained XGBoost model.
+On this screen it is possible to check the prediction for a specific individual or groups, using the trained XGBoost model*.
 ''')
 
 st.markdown('''
-Although the system takes care of the data matching to the required form, it is recommended that the user
-enters the input data in CSV format according to the following column layout: 
+## Automated Data Processing:
+
+Manual data preparation is no longer necessary. Background processes automatically match any *.csv* file containing eye-tracking data from Tobii TX-300
+to the format required by the ML model. This includes removing unneeded features and applying necessary processing steps such as variable scaling and encoding.
+However, the dataset format expected by the model is shown below for reference.
 ''')
 
 
@@ -52,9 +55,7 @@ columns=['FixationPointX_(MCSpx)', 'FixationPointY_(MCSpx)', 'Fixation', 'Saccad
 )
 
 st.caption('''
-Note: The current model developed is only accurate for scene 6 data and is based only on the variables: 
-`['FixationPointX_(MCSpx)','FixationPointY_(MCSpx)','Fixation','Saccade','Unclassified']`.
-Also, the data file is expected to be standardised and encoded using One-Hot Encoding.
+*Note: Or any of the models desired by the user, by uploading the corresponding file to the Model page.
 ''')
 
  # Upload individual's data to be tested
@@ -192,6 +193,11 @@ else:
         st.subheader('''
         Preview of input data:
         ''')
+
+        st.markdown('''
+        Now, in the drop-down menu in the left pane, *Select a model to use for prediction*, you can specify which of the stored models
+        you want to use for inference.
+        ''')
         
         st.dataframe(df.head())
 
@@ -217,10 +223,9 @@ else:
             st.markdown('''
             ### 📊 Individual Predictions 
             
-            Finally, classification at the individual level is detailed. On one hand, it indicates
-            the number of samples available for each individual, as well as the number of them that
-            have been classified as ASD and Control. On the other hand, there is a slider that allows
-            to vary the threshold used to determine the classification of each individual. 
+            Finally, it displays the classification at the individual level. On one hand, it shows the number of samples available for each individual,
+            along with the counts of samples classified as ASD and Control. On the other hand, there is a slider that allows you to adjust the threshold
+            used for determining each individual's classification. 
             ''')
             # Ahora se muestran los resultados
 
