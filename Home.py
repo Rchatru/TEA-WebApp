@@ -27,6 +27,10 @@ The application is organized into several sections, each with a distinct purpose
 1. [Home](https://asd-check.streamlit.app/): This introductory page provides an overview and allows access to the other sections.
 2. [Models & Training](https://asd-check.streamlit.app/Model): Here, users can provide additional training data to re-train the algorithm (under construction) and manage different trained models.
 3. [Results & Predictions](https://asd-check.streamlit.app/Predict): This section enables users to input data for a specific individual to obtain a diagnosis from the trained model.
+
+You can navigate through the application using the links provided below, or the corresponding tabs located in the sidebar. 
+The subsequent pages follow a consistent layout. The central section of each page displays the results of the executed processes, 
+while the sidebar provides options for input and output actions such as uploading files and exporting results.
 ''')
 
 
