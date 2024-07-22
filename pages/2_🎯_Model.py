@@ -26,8 +26,11 @@ st.set_page_config(
 st.markdown('''
 # 🎯 Models & Training
 
-On this page, it is shown some of the training results of the classification algorithm.
-It is also possible to provide new training data, if available, in order to re-train the model.
+On this page, you can view detailed training results of the classification algorithm, including performance metrics and visualizations such as loss
+and precision-recall curves.
+
+In addition, this section also allows you to upload new training data to re-train the model, enabling continuous improvement and adaptation
+to new data *(work in progress)*. You can also manage different trained models by uploading pre-trained files or exporting the current one.
  ''')
 
 # Hack para quitar las flechas del widget
@@ -71,7 +74,14 @@ col_1,col_2 = st.columns(2)
 col_1.image('static/Images/resultados_txt.png',caption='Training, testing and validation metrics', use_column_width=True)
 col_2.image('static/Images/confusion_func.png',caption='Normalised confusion matrix', use_column_width=True)
 
-st.markdown('''## ⚙ Manage Stored Models''')
+st.markdown('''## ⚙ Manage Stored Models
+Here, the user can upload a new trained model using the menu available in the sidebar. The uploaded model will be securely stored in the corresponding
+AWS bucket and will be used on the Predict page for inference. Upon upload, the model file is renamed according to the current server date and time to
+ensure unique identification.
+
+Additionally, a file tree of available models is displayed, providing an overview of all stored models. This feature allows users to manage them
+efficiently, including the option to remove obsolete ones.
+''')
 
 text = show_file_structure('models/')
 
