@@ -256,7 +256,7 @@ def check_df(df_in):
 
    # df = OneHotEncode(df, 'SceneName')
    df = OneHotEncode(df, 'GazeEventType')
-   st.text(df.columns.tolist())
+   st.text(df.head()) #debug
    # FIXME: #4 Se eliminan demasiados outliers, revisar función
    # # Cálculo de los cuartiles y rango IQR
    # Q1 = df[vars].quantile(0.25)
