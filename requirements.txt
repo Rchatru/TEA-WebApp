@@ -4,10 +4,6 @@ xgboost
 tensorflow-cpu
 scikit-learn
 matplotlib
-protobuf
 s3fs
 boto3
-botocore
-aiobotocore
-urllib3
-streamlit
+streamlit>=1.32.0
