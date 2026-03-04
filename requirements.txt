@@ -4,7 +4,7 @@ xgboost
 tensorflow-cpu
 scikit-learn
 matplotlib
-protobuf==3.20.*
+protobuf
 s3fs
 boto3
 botocore
